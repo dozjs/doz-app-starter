@@ -13,8 +13,9 @@ component('app-ui', {
     template() {
         return `
             <header>
+            <app-logo></app-logo>
                 <app-nav></app-nav>
-                <app-logo></app-logo>
+                
             </header>
             <main>
                 <doz-router mode="history" d:id="router">

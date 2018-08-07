@@ -3,13 +3,12 @@ html, body {
     background-color: #1f0c70;
     color: #fff;
     font-family: arial, sans-serif;
-    padding: 20px;
     margin: 0;
     text-align: center;
 }
 
 nav {
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 
 nav ul{
@@ -45,6 +44,6 @@ nav a.router-link-active{
 }
 
 h1 {
-    margin: 20px 0;
+    margin: 40px 0;
     font-weight: lighter;
 }

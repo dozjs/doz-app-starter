@@ -9,12 +9,13 @@ function getRandomColor() {
     return color;
 }
 
-
 component('app-logo', {
+
     props: {
         backgroundColor: '#1f0c70',
         textColor: '#fff'
     },
+
     template() {
         return `
             <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -30,15 +31,19 @@ component('app-logo', {
             </svg>        
         `
     },
+
     onCreate() {
         this.$timer = null;
     },
+
     onMount() {
         setInterval(() => {
             this.props.backgroundColor = getRandomColor();
         }, 200)
     },
+
     onDestroy() {
         setInterval(this.$timer);
     }
+
 });
