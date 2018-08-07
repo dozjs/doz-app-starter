@@ -1,18 +1,3605 @@
-parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRequire,o="function"==typeof require&&require;function u(n,t){if(!r[n]){if(!e[n]){var f="function"==typeof parcelRequire&&parcelRequire;if(!t&&f)return f(n,!0);if(i)return i(n,!0);if(o&&"string"==typeof n)return o(n);var c=new Error("Cannot find module '"+n+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[n][1][r]||r};var l=r[n]=new u.Module(n);e[n][0].call(l.exports,p,l,l.exports,this)}return r[n].exports;function p(e){return u(p.resolve(e))}}u.isParcelRequire=!0,u.Module=function(e){this.id=e,this.bundle=u,this.exports={}},u.modules=e,u.cache=r,u.parent=i,u.register=function(r,n){e[r]=[function(e,r){r.exports=n},{}]};for(var f=0;f<n.length;f++)u(n[f]);if(n.length){var c=u(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=c:"function"==typeof define&&define.amd?define(function(){return c}):t&&(this[t]=c)}return u}({"F6m0":[function(require,module,exports) {
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+// eslint-disable-next-line no-global-assign
+parcelRequire = (function (modules, cache, entry, globalName) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
+  var nodeRequire = typeof require === 'function' && require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof parcelRequire === 'function' && parcelRequire;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error('Cannot find module \'' + name + '\'');
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+
+      var module = cache[name] = new newRequire.Module(name);
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports, this);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [function (require, module) {
+      module.exports = exports;
+    }, {}];
+  };
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (entry.length) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(entry[entry.length - 1]);
+
+    // CommonJS
+    if (typeof exports === "object" && typeof module !== "undefined") {
+      module.exports = mainExports;
+
+    // RequireJS
+    } else if (typeof define === "function" && define.amd) {
+     define(function () {
+       return mainExports;
+     });
+
+    // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+
+  // Override the current require with this new one
+  return newRequire;
+})({5:[function(require,module,exports) {
 var define;
-var define;!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("Doz",[],t):"object"==typeof exports?exports.Doz=t():e.Doz=t()}("undefined"!=typeof self?self:this,function(){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=13)}([function(e,t,n){"use strict";e.exports={ROOT:"__DOZ_GLOBAL_COMPONENTS__",INSTANCE:"__DOZ_INSTANCE__",CMP_INSTANCE:"__DOZ_CMP_INSTANCE__",NS:{SVG:"http://www.w3.org/2000/svg"},TAG:{ROOT:"doz-root",EACH:"doz-each-root",APP:"doz-app",EMPTY:"doz-empty",MOUNT:"doz-mount",SUFFIX_ROOT:"-root"},REGEX:{IS_CUSTOM_TAG:/^\w+-[\w-]+$/,IS_CUSTOM_TAG_STRING:/<\w+-[\w-]+/,IS_BIND:/^d-bind$/,IS_REF:/^d-ref$/,IS_ALIAS:/^d:alias$/,IS_STORE:/^d:store$/,IS_COMPONENT_LISTENER:/^d:on-(\w+)$/,IS_LISTENER:/^on/,IS_ID_SELECTOR:/^#[\w-_:.]+$/,IS_PARENT_METHOD:/^parent.(.*)/,IS_STRING_QUOTED:/^"\w+"/,GET_LISTENER:/^this.(.*)\((.*)\)/,TRIM_QUOTES:/^["'](.*)["']$/},ATTR:{BIND:"d-bind",REF:"d-ref",ALIAS:"d:alias",STORE:"d:store",LISTENER:"d:on",ID:"d:id",FORCE_UPDATE:"forceupdate"}}},function(e,t,n){"use strict";var r=n(0).ROOT;function o(){return window[r]=window[r]||{components:{}},window[r].components}e.exports={register:function(e){var t=o(),n=e.tag.toUpperCase();if(t.hasOwnProperty(n))throw new Error("Component "+n+" already defined");t[n]=e},get:function(e){if("string"!=typeof e)throw new TypeError("tag must be a string");return e=e.toUpperCase(),o()[e]},removeAll:function(){window[r]&&(window[r].components={})}}},function(e,t,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function o(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:[];for(var i in t)t.hasOwnProperty(i)&&-1===n.indexOf(i)&&(e.hasOwnProperty(i)&&void 0!==e[i]?"object"===r(e[i])&&o(e[i],t[i]):e[i]=t[i]);return e}e.exports=o,e.exports.copy=function(){for(var e=arguments.length,t=Array(e),n=0;n<e;n++)t[n]=arguments[n];return t[0]=Object.assign({},t[0]),o.apply(this,t)}},function(e,t,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o=n(2),i=n(1).register,a=n(4),u=n(0),c=u.REGEX,l=u.TAG,s=u.INSTANCE,f=u.CMP_INSTANCE,p=n(1),d=n(17),m=n(6),h=n(8),y=h.transform,v=h.serializeProps,b=n(11).updateElement,_=n(22),g=n(23),E=n(24).extract,T=n(5),S=n(25);function A(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(e.root){e.template="string"==typeof e.template?a.create(e.template):e.template,e.root.appendChild(e.template);var t=null,n=void 0,r=[];return function o(i){for(var a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};i;){var u=i.nodeName.toLowerCase(),c={};a.cmp&&a.cmp._components&&(c=a.cmp._components);var l=e.autoCmp||c[u]||e.app._components[u]||p.get(i.nodeName);if(l){if(a.cmp){var s=i.outerHTML;a.cmp.rawChildren.push(s)}if(a.cmp&&!1===a.cmp.autoCreateChildren){r.push(i),i=i.nextSibling;continue}var d=v(i),h=E(d),y=C(l,{root:i,app:e.app,props:d,dProps:h,parentCmp:a.cmp});if(!y){i=i.nextSibling;continue}if(!1!==m.callBeforeMount(y)&&(y.render(!0),t||(t=y),y._rootElement[f]=y,i.insertBefore(y._rootElement,i.firstChild),m.callRender(y),m.callMount(y),m.callMountAsync(y)),n=y,a.cmp){var b=Object.keys(a.cmp.children).length;a.cmp.children[y.alias?y.alias:b++]=y}e.autoCmp=null}i.hasChildNodes()&&o(i.firstChild,{cmp:n}),i=i.nextSibling}}(e.template),r.forEach(function(e){return e.remove()}),t}}function C(e,t){var n=o.copy(t.props,"function"==typeof e.cfg.props?e.cfg.props():e.cfg.props),i=Object.defineProperties({},{_isCreated:{value:!1,writable:!0},_prevTpl:{value:null,writable:!0},_prev:{value:null,writable:!0},_prevProps:{value:null,writable:!0},_rootElement:{value:null,writable:!0},_boundElements:{value:{},writable:!0},_callback:{value:t.dProps.callback,writable:!0},_cache:{value:new Map},_loops:{value:{},writable:!0},_components:{value:{},writable:!0},_publicProps:{value:Object.assign({},t.props)},_processing:{value:[],writable:!0},_dynamicChildren:{value:[],writable:!0},_unmounted:{value:!1,writable:!0},_unmountedParentNode:{value:null,writable:!0},getHTMLElement:{value:function(){return this._rootElement.parentNode},enumerable:!0},beginSafeRender:{value:function(){T.beginRender(this.props)},enumerable:!0},endSafeRender:{value:function(){T.endRender(this.props)},enumerable:!0},app:{value:t.app,enumerable:!0},parent:{value:t.parentCmp,enumerable:!0},ref:{value:{},writable:!0,enumerable:!0},children:{value:{},writable:!0,enumerable:!0},rawChildren:{value:[],writable:!0,enumerable:!0},tag:{value:e.tag,enumerable:!0},emit:{value:function(e){if(this._callback&&void 0!==this._callback[e]&&void 0!==this.parent[this._callback[e]]&&"function"==typeof this.parent[this._callback[e]]){for(var t=arguments.length,n=Array(t>1?t-1:0),r=1;r<t;r++)n[r-1]=arguments[r];this.parent[this._callback[e]].apply(this.parent,n)}},enumerable:!0},each:{value:function(e,t){var n=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=void 0;return Array.isArray(e)&&(n&&this.beginSafeRender(),r=e.map(t).map(function(e){if("string"==typeof e)return e.trim()}).join(""),n&&this.endSafeRender()),r},enumerable:!0},toStyle:{value:function(e){return S(e)},enumerable:!0},getStore:{value:function(e){return this.app.getStore(e)},enumerable:!0},getComponentById:{value:function(e){return this.app.getComponentById(e)},enumerable:!0},getCmp:{value:function(e){return this.app.getComponentById(e)},enumerable:!0},appRoot:{value:t.app._root,enumerable:!0},action:{value:t.app.action,enumerable:!0},render:{value:function(e){var n=this;this.beginSafeRender();var r=this.template().trim();this.endSafeRender();var o=a.create(r,l.ROOT),i=y(o),u=b(t.root,i,this._prev,0,this,e);setTimeout(function(){!function(e){!function(e){var t=e._dynamicChildren.length-1;for(;t>=0;){var n=e._dynamicChildren[t];!document.body.contains(n)&&n[s]&&(n[s].destroy(!0),e._dynamicChildren.splice(t,1)),t-=1}}(e);var t=e._processing.length-1;for(;t>=0;){var n=e._processing[t],r=n.node.parentNode;if(n.node[s]&&n.node[s].destroy(!0),""===n.node.innerHTML){var o=A({root:r,template:n.node.outerHTML,app:e.app});o&&(e._dynamicChildren.push(o._rootElement.parentNode),r.replaceChild(o._rootElement.parentNode,n.node),o._rootElement.parentNode[s]=o,e._processing.splice(t,1))}t-=1}}(n)}),!this._rootElement&&u&&(this._rootElement=u),this._prev=i},enumerable:!0},mount:{value:function(e){var t=this,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if(this._unmounted)return!1===m.callBeforeMount(this)?this:(this._unmountedParentNode.appendChild(this._rootElement.parentNode),this._unmounted=!1,this._unmountedParentNode=null,m.callMount(this),Object.keys(this.children).forEach(function(e){t.children[e].mount()}),this);if(e){if(1!==this._rootElement.nodeType){var r=document.createElement(this.tag+l.SUFFIX_ROOT);this._rootElement.parentNode.replaceChild(r,this._rootElement),this._rootElement=r,this._rootElement[f]=this}var o=this._rootElement;return"string"==typeof n.selector?o=o.querySelector(n.selector):n.selector instanceof HTMLElement&&(o=n.selector),this._unmounted=!1,this._unmountedParentNode=null,this.app.mount(e,o,this)}},enumerable:!0},unmount:{value:function(){var e=arguments.length>0&&void 0!==arguments[0]&&arguments[0],t=this,n=arguments[1],r=arguments[2];if(e||!Boolean(this._unmountedParentNode)&&this._rootElement&&this._rootElement.parentNode&&this._rootElement.parentNode.parentNode)return!1!==m.callBeforeUnmount(this)&&(this._unmountedParentNode=this._rootElement.parentNode.parentNode,e?this._rootElement.parentNode.innerHTML="":this._rootElement.parentNode.parentNode.removeChild(this._rootElement.parentNode),this._unmounted=!n,r||m.callUnmount(this),Object.keys(this.children).forEach(function(o){t.children[o].unmount(e,n,r)}),this)},enumerable:!0},destroy:{value:function(e){var t=this;!1!==this.unmount(e,!0)&&(e||this._rootElement&&!1!==m.callBeforeDestroy(this)&&this._rootElement.parentNode)&&(Object.keys(this.children).forEach(function(e){t.children[e].destroy()}),m.callDestroy(this))},enumerable:!0}});if(function(e,t,n){Object.assign(e,t,n),Array.isArray(t.components)?(t.components.forEach(function(t){"object"===(void 0===t?"undefined":r(t))&&"string"==typeof t.tag&&"object"===r(t.cfg)&&(e._components[t.tag]=t)}),delete e.components):"object"===r(t.components)&&(Object.keys(t.components).forEach(function(n){e._components[n]={tag:n,cfg:t.components[n]}}),delete e.components)}(i,e.cfg,t.dProps),!1!==m.callBeforeCreate(i))return d.create(i,n),_.create(i),g.create(i),function(e){"function"==typeof e.onAppReady&&(e.onAppReady._instance=e,e.app._onAppReadyCB.push(e.onAppReady))}(i),m.callCreate(i),function(e){if("object"!==r(e.style))return;var t=e.tag,n=e.tag+"--style";if(document.querySelector("#"+n))return;var o=document.createElement("style");o.id=n,o.innerHTML=function e(n){var r="";Object.keys(n).forEach(function(o){if(/^@media/.test(o))r+=o+" {"+e(n[o])+"}";else{var i=S(n[o],!1);o=t+" "+o.replace(/(,)/g,"$1"+t+" "),r+=o+"{"+i+"} "}});return r}(e.style),document.head.appendChild(o)}(i),i._isCreated=!0,i}e.exports={component:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if("string"!=typeof e)throw new TypeError("Tag must be a string");if(!c.IS_CUSTOM_TAG.test(e))throw new TypeError("Tag must contain a dash (-) like my-component");var n={};n.tag=e,n.cfg=o.copy(t,{autoCreateChildren:!0,updateChildrenProps:!0,props:{},template:function(){return""}}),i(n)},getInstances:A}},function(e,t,n){"use strict";var r=/\n/g,o=/\s+/g,i={create:function(e,t){var n=void 0;e=(e=e.replace(r," ")).replace(o," ");var i=document.createElement("div");if(i.innerHTML=e,i.childNodes.length>1?(n=document.createElement(t)).innerHTML=i.innerHTML:n=i.firstChild||document.createTextNode(""),!this.isValidNode(n))throw new Error("Element not valid");return n},isValidNode:function(e){return e&&"nodeType"in e},getAllNodes:function(e){var t=[];return function e(n){for(;n;)t.push(n),n.hasChildNodes()&&e(n.firstChild),n=n.nextSibling}(e),t}};e.exports=i},function(e,t,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};var o,i,a,u,c,l=(o=[],i=[],a=[],u=null,c=function e(t,n,c,l){var s=null==n,f=c||null,p=l||"",d=[],m=function(e,t){return e instanceof Array?""!==p?p:t:""!==p?p+"."+t:t},h=0,y=function(e){if(!0!==f.paused)if(s&&(n=++h>1,setTimeout(function(){h=0},10)),console.log("domDelay",n),!0===n)setTimeout(function(){if(e===d.length){for(var t=0;t<f.observers.length;t++)f.observers[t](d);d=[]}},10);else{for(var t=0;t<f.observers.length;t++)f.observers[t](d);d=[]}},v={get:function(t,r){if("__getTarget"===r)return t;if("__isProxy"===r)return!0;if("__getParent"===r)return function(e){void 0===e&&(e=1);var n,r=m(t,"__getParent").split(".");return r.splice(-(e+1),e+1),n=f.parentProxy,r.join(".").split(".").reduce(function(e,t){return e?e[t]:void 0},n||self)};var o,i=t[r];if(i instanceof Object&&null!==i&&t.hasOwnProperty(r)){!0===i.__isProxy&&(i=i.__getTarget);for(var a=-1,u=f.targets,c=0,l=u.length;c<l;c++)if(i===u[c]){a=c;break}return a>-1?f.proxies[a]:e(i,n,f,""!==p?p+"."+r:r)}return f.renderMode?"string"==typeof(o=i)?o.replace(/&(?!\w+;)/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):o:i},deleteProperty:function(e,t){var n=!0;u===b&&(n=!1,u=null);var r=Object.assign({},e),o=m(e,t);if((d.push({type:"delete",target:e,property:t,newValue:null,previousValue:r[t],currentPath:o,proxy:b}),"function"==typeof f.beforeChange&&f.checkBeforeChange!==o)&&(f.checkBeforeChange=o,!1===f.beforeChange(d)))return f.checkBeforeChange="",!1;if(f.checkBeforeChange="",!0===n){var c,l=void 0;for(l=0,c=i.length;l<c&&e!==i[l];l++);for(var s=a[l],p=s.length;p--;)s[p].proxy!==b&&(u=s[p].proxy,delete s[p].proxy[t]);delete e[t]}return y(d.length),!0},set:function(e,t,n,o){var c=!0;u===b&&(c=!1,u=null);var l=e[t];if(l!==n||!1===c){var s=void 0===l?"undefined":r(l),p=m(e,t),h="update";if("undefined"===s&&(h="add"),d.push({type:h,target:e,property:t,newValue:n,previousValue:o[t],currentPath:p,proxy:b}),"function"==typeof f.beforeChange&&f.checkBeforeChange!==p)if(f.checkBeforeChange=p,!1===f.beforeChange(d))return f.checkBeforeChange="",!1;if(f.checkBeforeChange="",!0===c){var v,_=void 0;for(_=0,v=i.length;_<v&&e!==i[_];_++);var g=a[_];if(g)for(var E=0,T=g.length;E<T;E++)g[E].proxy!==b&&(u=g[E].proxy,g[E].proxy[t]=n);setTimeout(function(){if("object"===s&&null!==l){for(var t=Object.keys(e),n=0,r=t.length;n<r;n++)if(e[t[n]]===l)return;!function e(t){for(var n=Object.keys(t),r=0,o=n.length;r<o;r++){var u=t[n[r]];u instanceof Object&&null!==u&&e(u)}for(var c=-1,l=0,s=i.length;l<s;l++)if(t===i[l]){c=l;break}if(c>-1){for(var p=a[c],d=p.length;d--;)if(f===p[d].observable){p.splice(d,1);break}0===p.length&&(a.splice(c,1),i.splice(c,1))}}(l)}},1e4),e[t]=n,n instanceof Object&&null!==n&&function e(t){for(var n=t.__getTarget,r=Object.keys(n),o=0,i=r.length;o<i;o++){var a=r[o];n[a]instanceof Object&&null!==n[a]&&e(t[a])}}(b[t])}y(d.length)}return!0}},b=new Proxy(t,v);null===f?(f={parentTarget:t,domDelay:n,parentProxy:b,observers:[],targets:[t],proxies:[b],paused:!1,path:p},o.push(f)):(f.targets.push(t),f.proxies.push(b));for(var _={target:t,proxy:b,observable:f},g=-1,E=0,T=i.length;E<T;E++)if(t===i[E]){g=E;break}return g>-1?a[g].push(_):(i.push(t),a.push([_]),g=i.length-1),b},{create:function(e,t,n){!0===e.__isProxy&&(e=e.__getTarget);var r=c(e,t);return"function"==typeof n&&this.observe(r,n),function e(t){for(var n=t.__getTarget,r=Object.keys(n),o=0,i=r.length;o<i;o++){var a=r[o];n[a]instanceof Object&&null!==n[a]&&e(t[a])}}(r),r},observe:function(e,t){for(var n=o.length;n--;)if(o[n].parentProxy===e){o[n].observers.push(t);break}},pause:function(e){for(var t=o.length,n=!1;t--;)if(o[t].parentProxy===e){o[t].paused=!0,n=!0;break}if(!1===n)throw new Error("DOZ could not pause observable -- matching proxy not found.")},resume:function(e){for(var t=o.length,n=!1;t--;)if(o[t].parentProxy===e){o[t].paused=!1,n=!0;break}if(!1===n)throw new Error("DOZ could not resume observable -- matching proxy not found.")},remove:function(e){for(var t=null,n=!1,r=o.length;r--;)if(o[r].parentProxy===e){t=o[r],n=!0;break}for(var u=a.length;u--;)for(var c=a[u].length;c--;)a[u][c].observable===t&&(a[u].splice(c,1),0===a[u].length&&(a.splice(u,1),i.splice(u,1)));!0===n&&o.splice(r,1)},beforeChange:function(e,t){if("function"!=typeof t)throw new Error("Callback function is required");for(var n=o.length,r=!1;n--;)if(o[n].parentProxy===e){o[n].beforeChange=t,r=!0;break}if(!1===r)throw new Error("DOZ -- matching proxy not found.")},beginRender:function(e){for(var t=o.length,n=!1;t--;)if(o[t].parentProxy===e){o[t].renderMode=!0,n=!0;break}if(!1===n)throw new Error("DOZ -- matching proxy not found.")},endRender:function(e){for(var t=o.length,n=!1;t--;)if(o[t].parentProxy===e){o[t].renderMode=!1,n=!0;break}if(!1===n)throw new Error("DOZ -- matching proxy not found.")}});e.exports=l},function(e,t,n){"use strict";var r=n(18);e.exports={callBeforeCreate:function(e){if("function"==typeof e.onBeforeCreate)return e.onBeforeCreate.call(e)},callCreate:function(e){"function"==typeof e.onCreate&&e.onCreate.call(e)},callRender:function(e){"function"==typeof e.onRender&&(r.once("onRender is deprecated since v. 1.0.0, use onMount instead"),e.onRender.call(e))},callBeforeMount:function(e){if("function"==typeof e.onBeforeMount)return e.onBeforeMount.call(e)},callMount:function(e){"function"==typeof e.onMount&&e.onMount.call(e)},callMountAsync:function(e){"function"==typeof e.onMountAsync&&setTimeout(function(){e.onMountAsync.call(e)})},callBeforeUpdate:function(e,t){if("function"==typeof e.onBeforeUpdate)return e.onBeforeUpdate.call(e,t)},callUpdate:function(e,t){"function"==typeof e.onUpdate&&e.onUpdate.call(e,t)},callBeforeUnmount:function(e){if("function"==typeof e.onBeforeUnmount)return e.onBeforeUnmount.call(e)},callUnmount:function(e){"function"==typeof e.onUnmount&&e.onUnmount.call(e)},callBeforeDestroy:function(e){if("function"==typeof e.onBeforeDestroy)return e.onBeforeDestroy.call(e)},callDestroy:function(e){"function"==typeof e.onDestroy&&(e.onDestroy.call(e),e=null)}}},function(e,t,n){"use strict";e.exports=function(e){return void 0!==window.requestAnimationFrame?window.requestAnimationFrame(e):window.setTimeout(e)}},function(e,t,n){"use strict";var r=n(9),o=n(10),i=n(0),a=i.REGEX,u=i.ATTR;function c(e){var t={};if(e.attributes)for(var n=Array.from(e.attributes),i=n.length-1;i>=0;--i){var c=n[i],l=c.name.match(a.IS_COMPONENT_LISTENER);if(l)void 0===t[u.LISTENER]&&(t[u.LISTENER]={}),t[u.LISTENER][l[1]]=c.nodeValue,delete t[c.name];else{var s=c.nodeValue;a.IS_STRING_QUOTED.test(s)&&(s=c.nodeValue.replace(/"/g,"&quot;")),t[a.IS_CUSTOM_TAG.test(e.nodeName)?o(c.name):c.name]=c.name===u.FORCE_UPDATE||r(s)}}return t}e.exports={transform:function(e){var t={};return function e(n,r){for(;n;){var o=void 0;3===n.nodeType?o=n.nodeValue:((o={}).type=n.nodeName,o.children=[],o.props=c(n),o.isSVG=void 0!==n.ownerSVGElement),Object.keys(t).length||(t=o),r&&r.children&&r.children.push(o),n.hasChildNodes()&&e(n.firstChild,o),n=n.nextSibling}}(e,t),t},serializeProps:c}},function(e,t,n){"use strict";e.exports=function(e){if("string"!=typeof e)return e;switch(e){case"undefined":return;case"null":return null;case"NaN":return NaN;case"Infinity":return 1/0;case"true":return!0;case"false":return!1;case"0":return 0;default:try{return JSON.parse(e)}catch(e){}}var t=parseFloat(e);return!isNaN(t)&&isFinite(e)?0===e.toLowerCase().indexOf("0x")?parseInt(e,16):t:e}},function(e,t,n){"use strict";e.exports=function(e){return e.replace(/(-\w)/g,function(e){return e[1].toUpperCase()})}},function(e,t,n){"use strict";var r=n(19);e.exports={updateElement:r.update}},function(e,t,n){"use strict";e.exports=function(e){return e.replace(/([a-zA-Z])(?=[A-Z])/g,"$1-").toLowerCase()}},function(e,t,n){"use strict";e.exports=n(14)},function(e,t,n){"use strict";e.exports=n(15),e.exports.component=n(3).component,e.exports.collection=n(1),e.exports.update=n(11).updateElement,e.exports.transform=n(8).transform,e.exports.html=n(4),e.exports.version="1.4.1"},function(e,t,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}();var i=n(2),a=n(16),u=n(3),c=n(0),l=c.TAG,s=c.REGEX,f=function(){function e(){var t=this,n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e);var o="<"+l.APP+"></"+l.APP+">";if(s.IS_ID_SELECTOR.test(n.root)&&(n.root=document.getElementById(n.root.substring(1))),s.IS_ID_SELECTOR.test(n.template)&&(n.template=document.getElementById(n.template.substring(1)),n.template=n.template.innerHTML),!(n.root instanceof HTMLElement))throw new TypeError("root must be an HTMLElement or an valid ID selector like #example-root");if(!(n.template instanceof HTMLElement||"string"==typeof n.template||"function"==typeof n.template))throw new TypeError("template must be a string or an HTMLElement or a function or an valid ID selector like #example-template");this.cfg=i(n,{components:[],actions:{}}),Object.defineProperties(this,{_components:{value:{},writable:!0},_usedComponents:{value:{},writable:!0},_stores:{value:{},writable:!0},_cache:{value:new Map},_ids:{value:{},writable:!0},_onAppReadyCB:{value:[],writable:!0},_callAppReady:{value:function(){this._onAppReadyCB.forEach(function(e){"function"==typeof e&&e._instance&&e.call(e._instance)}),this._onAppReadyCB=[]}},_root:{value:this.cfg.root},action:{value:a(this.cfg.actions,this),enumerable:!0},mount:{value:function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:this._tree;if("string"==typeof t&&(t=document.querySelector(t)),!((t=t||n._rootElement)instanceof HTMLElement))throw new TypeError("root must be an HTMLElement or an valid selector like #example-root");var r={tag:l.MOUNT,cfg:{props:{},template:function(){return"<"+l.ROOT+">"+e+"</"+l.ROOT+">"}}};return u.getInstances({root:t,template:"<"+l.MOUNT+"></"+l.MOUNT+">",app:this,parentCmp:n,autoCmp:r,mount:!0})},enumerable:!0}}),Array.isArray(this.cfg.components)?this.cfg.components.forEach(function(e){"object"===(void 0===e?"undefined":r(e))&&"string"==typeof e.tag&&"object"===r(e.cfg)&&(t._components[e.tag]=e)}):"object"===r(this.cfg.components)&&Object.keys(this.cfg.components).forEach(function(e){t._components[e]={tag:e,cfg:t.cfg.components[e]}}),this._components[l.APP]={tag:l.APP,cfg:{template:"function"==typeof n.template?n.template:function(){return n.template}}},Object.keys(n).forEach(function(e){["template","root"].includes(e)||(t._components[l.APP].cfg[e]=n[e])}),this._tree=u.getInstances({root:this.cfg.root,template:o,app:this})||[],this._callAppReady()}return o(e,[{key:"getComponent",value:function(e){return this._tree?this._tree.children[e]:void 0}},{key:"getComponentById",value:function(e){return this._ids[e]}},{key:"getStore",value:function(e){return this._stores[e]}}]),e}();e.exports=f},function(e,t,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};e.exports=function e(t,n){if("object"!==(void 0===t?"undefined":r(t)))throw new TypeError("expected an object");for(var o=Object.assign({},t),i=Object.keys(t),a=i.length-1;a>=0;--a){var u=o[i[a]];"function"==typeof u?o[i[a]]=u.bind(n):"object"===(void 0===u?"undefined":r(u))&&(o[i[a]]=e(u,n))}return o}},function(e,t,n){"use strict";function r(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var o=n(5),i=n(6),a=n(7);e.exports={create:function(e,t){e.props=o.create(t,null,function(t){e.render(),function(e,t){t.forEach(function(t){e._boundElements.hasOwnProperty(t.property)&&e._boundElements[t.property].forEach(function(e){if("checkbox"===e.type)if(e.defaultValue){if(Array.isArray(t.newValue)){var n=document.querySelectorAll("input[name="+e.name+"][type=checkbox]");[].concat(r(n)).forEach(function(e){return e.checked=t.newValue.includes(e.value)})}}else e.checked=t.newValue;else"radio"===e.type?e.checked=e.value===t.newValue:"select-multiple"===e.type&&Array.isArray(t.newValue)?[].concat(r(e.options)).forEach(function(e){return e.selected=t.newValue.includes(e.value)}):e.value=t.newValue})})}(e,t),e._isCreated&&a(function(){i.callUpdate(e,t)})}),o.beforeChange(e.props,function(t){if(!1===i.callBeforeUpdate(e,t))return!1})}}},function(e,t,n){"use strict";var r=[],o=function e(t,n){return void 0!==t&&(n=n||t,r.includes(n)||r.push(n),console.warn("["+e.title+"]",n),!0)};o.title="DeprecationWarning";e.exports=o,e.exports.once=function(){for(var e=arguments.length,t=Array(e),n=0;n<e;n++)t[n]=arguments[n];return!r.includes(t[1]||t[0])&&o.apply(void 0,t)},e.exports._list=r},function(e,t,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o=n(20),i=o.attach,a=o.updateAttributes,u=[],c=n(0),l=c.INSTANCE,s=c.TAG,f=c.NS,p=c.CMP_INSTANCE;function d(e,t,n){if(void 0!==e){if("string"==typeof e)return document.createTextNode(e);"#"===e.type[0]&&(e.type=s.EMPTY);var r=e.isSVG?document.createElementNS(f.SVG,e.type):document.createElement(e.type);return i(r,e.props,t),e.children.map(function(e){return d(e,t,n)}).forEach(r.appendChild.bind(r)),-1===e.type.indexOf("-")||n||t._processing.push({node:r,action:"create"}),r}}e.exports={create:d,update:function e(t,n,o){var i=arguments.length>3&&void 0!==arguments[3]?arguments[3]:0,c=arguments[4],s=arguments[5];if(t){if(!o){var f=d(n,c,s);return t.appendChild(f),f}if(n){if(T=o,(void 0===(E=n)?"undefined":r(E))!==(void 0===T?"undefined":r(T))||"string"==typeof E&&E!==T||E.type!==T.type||E.props&&E.props.forceupdate){var m=d(n,c,s),h=t.childNodes[i];return h[p]&&(m[p]=h[p],m[p]._rootElement=m),t.replaceChild(m,h),m}if(n.type){var y=a(t.childNodes[i],n.props,o.props,c);if(t.childNodes[i]){var v=t.childNodes[i][l];if(v&&y.length)return void y.forEach(function(e){Object.keys(e).forEach(function(t){v.props[t]=e[t]})})}for(var b=n.children.length,_=o.children.length,g=0;g<b||g<_;g++)e(t.childNodes[i],n.children[g],o.children[g],g,c,s);!function(){for(var e=u.length;e--;)u[e].parentNode.removeChild(u[e]),u.splice(e,1)}()}}else t.childNodes[i]&&u.push(t.childNodes[i]);var E,T}}}},function(module,exports,__webpack_require__){"use strict";var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _require=__webpack_require__(0),REGEX=_require.REGEX,ATTR=_require.ATTR,CMP_INSTANCE=_require.CMP_INSTANCE,castStringTo=__webpack_require__(9),dashToCamel=__webpack_require__(10),camelToDash=__webpack_require__(12),objectPath=__webpack_require__(21),delay=__webpack_require__(7);function isEventAttribute(e){return REGEX.IS_LISTENER.test(e)}function isBindAttribute(e){return e===ATTR.BIND}function isRefAttribute(e){return e===ATTR.REF}function canBind(e){return-1!==["INPUT","TEXTAREA","SELECT"].indexOf(e.nodeName)}function setAttribute(e,t,n,r){if(REGEX.IS_CUSTOM_TAG.test(e.nodeName)&&(t=camelToDash(t)),isCustomAttribute(t));else if("boolean"==typeof n)setBooleanAttribute(e,t,n);else if("object"===(void 0===n?"undefined":_typeof(n)))try{e.setAttribute(t,JSON.stringify(n))}catch(e){}else e.setAttribute(t,n)}function removeAttribute(e,t,n){isCustomAttribute(t)||!e||e.removeAttribute(t)}function updateAttribute(e,t,n,r,o){""===n?(removeAttribute(e,t,r,o),updateChildren(o,t,n,e)):""!==r&&n===r||(setAttribute(e,t,n,o),updateChildren(o,t,n,e))}function updateChildren(e,t,n,r){if(e&&e.updateChildrenProps&&r){t=dashToCamel(t);var o=r.firstChild;o&&o[CMP_INSTANCE]&&o[CMP_INSTANCE]._publicProps.hasOwnProperty(t)&&(o[CMP_INSTANCE].props[t]=n)}}function updateAttributes(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},r=arguments[3],o=Object.assign({},t,n),i=[];return Object.keys(o).forEach(function(o){if(updateAttribute(e,o,t[o],n[o],r),t[o]!==n[o]){var a={};a[o]=t[o],i.push(a)}}),i}function isCustomAttribute(e){return isEventAttribute(e)||isBindAttribute(e)||isRefAttribute(e)||e===ATTR.FORCE_UPDATE}function setBooleanAttribute(e,t,n){e&&(e.setAttribute(t,n),e[t]=n)}function extractEventName(e){return e.slice(2).toLowerCase()}function trimQuotes(e){return e.replace(REGEX.TRIM_QUOTES,"$1")}function addEventListener($target,name,value,cmp){if(isEventAttribute(name)){var match=value.match(REGEX.GET_LISTENER);if(match){var args=null,handler=match[1],stringArgs=match[2];stringArgs&&(args=stringArgs.split(",").map(function(e){return"this"===(e=e.trim())?cmp:castStringTo(trimQuotes(e))}));var isParentMethod=handler.match(REGEX.IS_PARENT_METHOD);isParentMethod&&(handler=isParentMethod[1],cmp=cmp.parent);var method=objectPath(handler,cmp);void 0!==method&&(value=args?method.bind.apply(method,[cmp].concat(_toConsumableArray(args))):method.bind(cmp))}if("function"==typeof value)$target.addEventListener(extractEventName(name),value);else{var _func=function _func(){eval(value)};$target.addEventListener(extractEventName(name),_func.bind(cmp))}}}function setBind(e,t,n,r){if(isBindAttribute(t)&&canBind(e)&&void 0!==r.props[n]){return["compositionstart","compositionend","input","change"].forEach(function(t){e.addEventListener(t,function(e){var t=void 0;if("checkbox"===this.type)if(this.defaultValue){var o=document.querySelectorAll("input[name="+this.name+"][type=checkbox]:checked");t=[].concat(_toConsumableArray(o)).map(function(e){return e.value}),r.props[n]=t}else r.props[n]=this.checked;else t=this.value,this.multiple&&(t=[].concat(_toConsumableArray(this.options)).filter(function(e){return e.selected}).map(function(e){return e.value})),r.props[n]=t})}),r._boundElements.hasOwnProperty(n)?r._boundElements[n].push(e):r._boundElements[n]=[e],!0}}function setRef(e,t,n,r){isRefAttribute(t)&&(r.ref[n]=e)}function attach(e,t,n){var r=void 0;for(var o in Object.keys(t).forEach(function(o){setAttribute(e,o,t[o],n),addEventListener(e,o,t[o],n),setBind(e,o,t[o],n)&&(r=n.props[t[o]]),setRef(e,o,t[o],n)}),e.dataset)e.dataset.hasOwnProperty(o)&&REGEX.IS_LISTENER.test(o)&&addEventListener(e,o,e.dataset[o],n);void 0!==r&&delay(function(){"radio"===e.type?document.querySelectorAll("input[name="+e.name+"][type=radio]").forEach(function(e){return e.checked=r===e.value}):"checkbox"===e.type?"object"===(void 0===r?"undefined":_typeof(r))?document.querySelectorAll("input[name="+e.name+"][type=checkbox]").forEach(function(e){return e.checked=Array.from(r).includes(e.value)}):e.checked=r:e.value=r})}module.exports={attach:attach,updateAttributes:updateAttributes}},function(e,t,n){"use strict";function r(e,t){return e.split(".").reduce(function(e,t){return e?e[t]:void 0},t)}e.exports=r,e.exports.getLast=function(e,t){return-1!==e.indexOf(".")&&((e=e.split(".")).pop(),e=e.join(".")),r(e,t)}},function(e,t,n){"use strict";e.exports={create:function(e){if("string"==typeof e.store){if(void 0!==e.app._stores[e.store])throw new Error("Store already defined: "+e.store);e.app._stores[e.store]=e.props}}}},function(e,t,n){"use strict";e.exports={create:function(e){if("string"==typeof e.id){if(void 0!==e.app._ids[e.id])throw new Error("ID already defined: "+e.id);e.app._ids[e.id]=e}}}},function(e,t,n){"use strict";var r=n(0).ATTR;e.exports={extract:function(e){var t={};return void 0!==e[r.ALIAS]&&(t.alias=e[r.ALIAS],delete e[r.ALIAS]),void 0!==e[r.STORE]&&(t.store=e[r.STORE],delete e[r.STORE]),void 0!==e[r.LISTENER]&&(t.callback=e[r.LISTENER],delete e[r.LISTENER]),void 0!==e[r.ID]&&(t.id=e[r.ID],delete e[r.ID]),t}}},function(e,t,n){"use strict";var r=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var n=[],r=!0,o=!1,i=void 0;try{for(var a,u=e[Symbol.iterator]();!(r=(a=u.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){o=!0,i=e}finally{try{!r&&u.return&&u.return()}finally{if(o)throw i}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),o=n(12);e.exports=function(e){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];return e=Object.entries(e).reduce(function(e,t){var n=r(t,2),i=n[0],a=n[1];return""+e+o(i)+":"+a+";"},""),t?'style="'+e+'"':e}}])});
-},{}],"XUXT":[function(require,module,exports) {
+// [DOZ]  Build version: 1.4.3  
+ (function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("Doz", [], factory);
+	else if(typeof exports === 'object')
+		exports["Doz"] = factory();
+	else
+		root["Doz"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+    ROOT: '__DOZ_GLOBAL_COMPONENTS__',
+    INSTANCE: '__DOZ_INSTANCE__',
+    CMP_INSTANCE: '__DOZ_CMP_INSTANCE__',
+    NS: {
+        SVG: 'http://www.w3.org/2000/svg'
+    },
+    TAG: {
+        ROOT: 'doz-root',
+        EACH: 'doz-each-root',
+        APP: 'doz-app',
+        EMPTY: 'doz-empty',
+        MOUNT: 'doz-mount',
+        SUFFIX_ROOT: '-root'
+    },
+    REGEX: {
+        IS_CUSTOM_TAG: /^\w+-[\w-]+$/,
+        IS_CUSTOM_TAG_STRING: /<\w+-[\w-]+/,
+        IS_BIND: /^d-bind$/,
+        IS_REF: /^d-ref$/,
+        IS_ALIAS: /^d:alias$/,
+        IS_STORE: /^d:store$/,
+        IS_COMPONENT_LISTENER: /^d:on-(\w+)$/,
+        IS_LISTENER: /^on/,
+        IS_ID_SELECTOR: /^#[\w-_:.]+$/,
+        IS_PARENT_METHOD: /^parent.(.*)/,
+        IS_STRING_QUOTED: /^"\w+"/,
+        GET_LISTENER: /^this.(.*)\((.*)\)/,
+        TRIM_QUOTES: /^["'](.*)["']$/
+    },
+    ATTR: {
+        // Attributes for HTMLElement
+        BIND: 'd-bind',
+        REF: 'd-ref',
+        // Attributes for Components
+        ALIAS: 'd:alias',
+        STORE: 'd:store',
+        LISTENER: 'd:on',
+        ID: 'd:id',
+        FORCE_UPDATE: 'forceupdate'
+    }
+};
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * Copies deep missing properties to the target object
+ * @param targetObj {Object} target object
+ * @param defaultObj {Object} default object
+ * @param exclude {Array} exclude properties from copy
+ * @returns {*}
+ */
+
+function extend(targetObj, defaultObj) {
+    var exclude = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+    for (var i in defaultObj) {
+        /* istanbul ignore else  */
+        if (defaultObj.hasOwnProperty(i) && exclude.indexOf(i) === -1) {
+            if (!targetObj.hasOwnProperty(i) || typeof targetObj[i] === 'undefined') {
+                targetObj[i] = defaultObj[i];
+            } else if (_typeof(targetObj[i]) === 'object') {
+                extend(targetObj[i], defaultObj[i]);
+            }
+        }
+    }
+    return targetObj;
+}
+
+/**
+ * Creates new target object and copies deep missing properties to the target object
+ * @param args[0] {Object} target object
+ * @param args[1] {Object} default object
+ * @param args[2] {Array} exclude properties from copy
+ * @returns {*}
+ */
+function copy() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
+    args[0] = Object.assign({}, args[0]);
+    return extend.apply(this, args);
+}
+
+module.exports = extend;
+module.exports.copy = copy;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
+    ROOT = _require.ROOT;
+
+/**
+ * Get or create global collection
+ * @returns {{}|components|{InjectAsComment: boolean, InjectByTag: boolean}|{InjectAsComment, InjectByTag}|Array|*}
+ */
+
+
+function getOrCreate() {
+    window[ROOT] = window[ROOT] || { components: {} };
+    return window[ROOT].components;
+}
+
+/**
+ * Register a component to global
+ * @param cmp
+ */
+function register(cmp) {
+    var collection = getOrCreate();
+
+    var tag = cmp.tag.toUpperCase();
+
+    if (collection.hasOwnProperty(tag)) console.warn('Doz', 'component ' + tag + ' overwritten');
+
+    collection[tag] = cmp;
+    /*
+    if (!collection.hasOwnProperty(tag)) {
+        collection[tag] = cmp;
+    } else {
+        throw new Error(`Component ${tag} already defined`);
+    }
+    */
+}
+
+function removeAll() {
+    if (window[ROOT]) window[ROOT].components = {};
+}
+
+/**
+ * Get component from global
+ * @param tag
+ * @returns {*}
+ */
+function get(tag) {
+    if (typeof tag !== 'string') throw new TypeError('tag must be a string');
+
+    tag = tag.toUpperCase();
+
+    var collection = getOrCreate();
+    return collection[tag];
+}
+
+module.exports = {
+    register: register,
+    get: get,
+    removeAll: removeAll
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var extend = __webpack_require__(1);
+var html = __webpack_require__(4);
+
+var _require = __webpack_require__(0),
+    TAG = _require.TAG,
+    CMP_INSTANCE = _require.CMP_INSTANCE,
+    INSTANCE = _require.INSTANCE;
+
+var collection = __webpack_require__(2);
+var observer = __webpack_require__(18);
+var hooks = __webpack_require__(6);
+
+var _require2 = __webpack_require__(8),
+    transform = _require2.transform,
+    serializeProps = _require2.serializeProps;
+
+var update = __webpack_require__(11).updateElement;
+var store = __webpack_require__(23);
+var ids = __webpack_require__(24);
+
+var _require3 = __webpack_require__(25),
+    extract = _require3.extract;
+
+var proxy = __webpack_require__(5);
+var toInlineStyle = __webpack_require__(13);
+var hmr = __webpack_require__(26);
+var style = __webpack_require__(27);
+var queueReady = __webpack_require__(29);
+var extendInstance = __webpack_require__(30);
+var cloneObject = __webpack_require__(31);
+
+function get() {
+    var cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+
+    if (!cfg.root) return;
+
+    cfg.template = typeof cfg.template === 'string' ? html.create(cfg.template) : cfg.template;
+
+    cfg.root.appendChild(cfg.template);
+
+    var component = null;
+    var parentElement = void 0;
+    var trash = [];
+
+    function walk(child) {
+        var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        while (child) {
+
+            var cmpName = child.nodeName.toLowerCase();
+            var localComponents = {};
+
+            if (parent.cmp && parent.cmp._components) {
+                localComponents = parent.cmp._components;
+            }
+
+            var cmp = cfg.autoCmp || localComponents[cmpName] || cfg.app._components[cmpName] || collection.get(child.nodeName);
+
+            if (cmp) {
+
+                if (parent.cmp) {
+                    var rawChild = child.outerHTML;
+                    parent.cmp.rawChildren.push(rawChild);
+                }
+
+                if (parent.cmp && parent.cmp.autoCreateChildren === false) {
+                    trash.push(child);
+                    child = child.nextSibling;
+                    continue;
+                }
+
+                var props = serializeProps(child);
+                var dProps = extract(props);
+
+                var newElement = create(cmp, {
+                    root: child,
+                    app: cfg.app,
+                    props: props,
+                    dProps: dProps,
+                    parentCmp: parent.cmp
+                });
+
+                if (!newElement) {
+                    child = child.nextSibling;
+                    continue;
+                }
+
+                if (_typeof(newElement.module) === 'object') {
+                    hmr(newElement, newElement.module);
+                }
+
+                if (hooks.callBeforeMount(newElement) !== false) {
+                    newElement.render(true);
+
+                    if (!component) {
+                        component = newElement;
+                    }
+
+                    newElement._rootElement[CMP_INSTANCE] = newElement;
+
+                    child.insertBefore(newElement._rootElement, child.firstChild);
+
+                    hooks.callRender(newElement);
+                    hooks.callMount(newElement);
+                    hooks.callMountAsync(newElement);
+                }
+
+                parentElement = newElement;
+
+                if (parent.cmp) {
+                    var n = Object.keys(parent.cmp.children).length;
+                    parent.cmp.children[newElement.alias ? newElement.alias : n++] = newElement;
+                }
+
+                cfg.autoCmp = null;
+            }
+
+            if (child.hasChildNodes()) {
+                walk(child.firstChild, { cmp: parentElement });
+            }
+
+            child = child.nextSibling;
+        }
+    }
+
+    walk(cfg.template);
+
+    trash.forEach(function (child) {
+        return child.remove();
+    });
+
+    return component;
+}
+
+function create(cmp, cfg) {
+
+    var props = extend.copy(cfg.props, typeof cmp.cfg.props === 'function' ? cmp.cfg.props() : cmp.cfg.props);
+
+    var instance = Object.defineProperties({}, {
+        _isCreated: {
+            value: false,
+            writable: true
+        },
+        _prevTpl: {
+            value: null,
+            writable: true
+        },
+        _prev: {
+            value: null,
+            writable: true
+        },
+        _prevProps: {
+            value: null,
+            writable: true
+        },
+        _rootElement: {
+            value: null,
+            writable: true
+        },
+        _boundElements: {
+            value: {},
+            writable: true
+        },
+        _callback: {
+            value: cfg.dProps['callback'],
+            writable: true
+        },
+        _cache: {
+            value: new Map()
+        },
+        _loops: {
+            value: {},
+            writable: true
+        },
+        _components: {
+            value: {},
+            writable: true
+        },
+        _publicProps: {
+            value: Object.assign({}, cfg.props)
+        },
+        _initialProps: {
+            value: cloneObject(props)
+        },
+        _processing: {
+            value: [],
+            writable: true
+        },
+        _dynamicChildren: {
+            value: [],
+            writable: true
+        },
+        _unmounted: {
+            value: false,
+            writable: true
+        },
+        _unmountedParentNode: {
+            value: null,
+            writable: true
+        },
+        getHTMLElement: {
+            value: function value() {
+                return this._rootElement.parentNode;
+            },
+            enumerable: true
+        },
+        beginSafeRender: {
+            value: function value() {
+                proxy.beginRender(this.props);
+            },
+            enumerable: true
+        },
+        endSafeRender: {
+            value: function value() {
+                proxy.endRender(this.props);
+            },
+            enumerable: true
+        },
+        app: {
+            value: cfg.app,
+            enumerable: true
+        },
+        parent: {
+            value: cfg.parentCmp,
+            enumerable: true
+        },
+        ref: {
+            value: {},
+            writable: true,
+            enumerable: true
+        },
+        children: {
+            value: {},
+            writable: true,
+            enumerable: true
+        },
+        rawChildren: {
+            value: [],
+            writable: true,
+            enumerable: true
+        },
+        tag: {
+            value: cmp.tag,
+            enumerable: true
+        },
+        emit: {
+            value: function value(name) {
+                if (this._callback && this._callback[name] !== undefined && this.parent[this._callback[name]] !== undefined && typeof this.parent[this._callback[name]] === 'function') {
+                    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                        args[_key - 1] = arguments[_key];
+                    }
+
+                    this.parent[this._callback[name]].apply(this.parent, args);
+                }
+            },
+            enumerable: true
+        },
+        each: {
+            value: function value(obj, func) {
+                var safe = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+                var res = void 0;
+                if (Array.isArray(obj)) {
+                    if (safe) this.beginSafeRender();
+                    res = obj.map(func).map(function (stringEl) {
+                        if (typeof stringEl === 'string') {
+
+                            return stringEl.trim();
+                        }
+                    }).join('');
+                    if (safe) this.endSafeRender();
+                }
+                return res;
+            },
+            enumerable: true
+        },
+        toStyle: {
+            value: function value(obj) {
+                return toInlineStyle(obj);
+            },
+            enumerable: true
+        },
+        getStore: {
+            value: function value(storeName) {
+                return this.app.getStore(storeName);
+            },
+            enumerable: true
+        },
+        getComponentById: {
+            value: function value(id) {
+                return this.app.getComponentById(id);
+            },
+            enumerable: true
+        },
+        getCmp: {
+            value: function value(id) {
+                return this.app.getComponentById(id);
+            },
+            enumerable: true
+        },
+        appRoot: {
+            value: cfg.app._root,
+            enumerable: true
+        },
+        action: {
+            value: cfg.app.action,
+            enumerable: true
+        },
+        render: {
+            value: function value(initial) {
+                var _this = this;
+
+                this.beginSafeRender();
+                var template = this.template().trim();
+                this.endSafeRender();
+
+                var tpl = html.create(template, TAG.ROOT);
+                var next = transform(tpl);
+
+                var rootElement = update(cfg.root, next, this._prev, 0, this, initial);
+
+                setTimeout(function () {
+                    drawDynamic(_this);
+                });
+
+                if (!this._rootElement && rootElement) {
+                    this._rootElement = rootElement;
+                }
+
+                this._prev = next;
+            },
+            enumerable: true
+        },
+        mount: {
+            value: function value(template) {
+                var _this2 = this;
+
+                var cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+
+                if (this._unmounted) {
+                    if (hooks.callBeforeMount(this) === false) return this;
+
+                    this._unmountedParentNode.appendChild(this._rootElement.parentNode);
+                    this._unmounted = false;
+                    this._unmountedParentNode = null;
+
+                    hooks.callMount(this);
+
+                    Object.keys(this.children).forEach(function (child) {
+                        _this2.children[child].mount();
+                    });
+
+                    return this;
+                } else if (template) {
+                    if (this._rootElement.nodeType !== 1) {
+                        var newElement = document.createElement(this.tag + TAG.SUFFIX_ROOT);
+                        this._rootElement.parentNode.replaceChild(newElement, this._rootElement);
+                        this._rootElement = newElement;
+                        this._rootElement[CMP_INSTANCE] = this;
+                    }
+
+                    var root = this._rootElement;
+
+                    if (typeof cfg.selector === 'string') root = root.querySelector(cfg.selector);else if (cfg.selector instanceof HTMLElement) root = cfg.selector;
+
+                    this._unmounted = false;
+                    this._unmountedParentNode = null;
+
+                    return this.app.mount(template, root, this);
+                }
+            },
+            enumerable: true
+        },
+        unmount: {
+            value: function value() {
+                var onlyInstance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+                var _this3 = this;
+
+                var byDestroy = arguments[1];
+                var silently = arguments[2];
+
+                if (!onlyInstance && (Boolean(this._unmountedParentNode) || !this._rootElement || !this._rootElement.parentNode || !this._rootElement.parentNode.parentNode)) {
+                    return;
+                }
+
+                if (hooks.callBeforeUnmount(this) === false) return false;
+
+                this._unmountedParentNode = this._rootElement.parentNode.parentNode;
+
+                if (!onlyInstance) {
+                    this._rootElement.parentNode.parentNode.removeChild(this._rootElement.parentNode);
+                } else this._rootElement.parentNode.innerHTML = '';
+
+                this._unmounted = !byDestroy;
+
+                if (!silently) hooks.callUnmount(this);
+
+                Object.keys(this.children).forEach(function (child) {
+                    _this3.children[child].unmount(onlyInstance, byDestroy, silently);
+                });
+
+                return this;
+            },
+            enumerable: true
+        },
+        destroy: {
+            value: function value(onlyInstance) {
+                var _this4 = this;
+
+                if (this.unmount(onlyInstance, true) === false) return;
+
+                if (!onlyInstance && (!this._rootElement || hooks.callBeforeDestroy(this) === false || !this._rootElement.parentNode)) {
+                    return;
+                }
+
+                Object.keys(this.children).forEach(function (child) {
+                    _this4.children[child].destroy();
+                });
+
+                hooks.callDestroy(this);
+            },
+            enumerable: true
+        }
+    });
+
+    // Assign cfg to instance
+    extendInstance(instance, cmp.cfg, cfg.dProps);
+
+    var beforeCreate = hooks.callBeforeCreate(instance);
+    if (beforeCreate === false) return undefined;
+
+    // Create observer to props
+    observer.create(instance, props);
+    // Create shared store
+    store.create(instance);
+    // Create ID
+    ids.create(instance);
+    // Add callback to ready queue
+    queueReady.add(instance);
+    // Call create
+    hooks.callCreate(instance);
+    //Apply scoped style
+    style.scoped(instance);
+
+    // Now instance is created
+    instance._isCreated = true;
+
+    return instance;
+}
+
+function drawDynamic(instance) {
+    clearDynamic(instance);
+
+    var index = instance._processing.length - 1;
+
+    while (index >= 0) {
+        var item = instance._processing[index];
+        var root = item.node.parentNode;
+
+        if (item.node[INSTANCE]) {
+            item.node[INSTANCE].destroy(true);
+        }
+
+        if (item.node.innerHTML === '') {
+
+            var dynamicInstance = __webpack_require__(3).get({
+                root: root,
+                template: item.node.outerHTML,
+                app: instance.app
+            });
+
+            if (dynamicInstance) {
+                instance._dynamicChildren.push(dynamicInstance._rootElement.parentNode);
+                root.replaceChild(dynamicInstance._rootElement.parentNode, item.node);
+                dynamicInstance._rootElement.parentNode[INSTANCE] = dynamicInstance;
+                instance._processing.splice(index, 1);
+            }
+        }
+        index -= 1;
+    }
+}
+
+function clearDynamic(instance) {
+    var index = instance._dynamicChildren.length - 1;
+
+    while (index >= 0) {
+        var item = instance._dynamicChildren[index];
+
+        if (!document.body.contains(item) && item[INSTANCE]) {
+            item[INSTANCE].destroy(true);
+            instance._dynamicChildren.splice(index, 1);
+        }
+        index -= 1;
+    }
+}
+
+module.exports = {
+    create: create,
+    get: get,
+    clearDynamic: clearDynamic,
+    drawDynamic: drawDynamic
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var regexN = /\n/g;
+var regexS = /\s+/g;
+var replace = ' ';
+
+var html = {
+    /**
+     * Create DOM element
+     * @param str html string
+     * @param wrapper tag string
+     * @returns {Element | Node | null}
+     */
+    create: function create(str, wrapper) {
+        var element = void 0;
+        str = str.replace(regexN, replace);
+        str = str.replace(regexS, replace);
+
+        var template = document.createElement('div');
+        template.innerHTML = str;
+
+        if (template.childNodes.length > 1) {
+            element = document.createElement(wrapper);
+            //console.log('TEMPLATE',template.innerHTML);
+            element.innerHTML = template.innerHTML;
+        } else {
+            //console.log('TEMPLATE',template.innerHTML);
+            element = template.firstChild || document.createTextNode('');
+        }
+
+        if (!this.isValidNode(element)) throw new Error('Element not valid');
+        return element;
+    },
+
+    /**
+     * Check if is a valid Node
+     * @param {*} el
+     * @returns {Boolean}
+     */
+    isValidNode: function isValidNode(el) {
+        return el && 'nodeType' in el;
+    },
+
+    getAllNodes: function getAllNodes(el) {
+
+        var nodes = [];
+
+        function scanner(n) {
+            while (n) {
+                nodes.push(n);
+                if (n.hasChildNodes()) {
+                    scanner(n.firstChild);
+                }
+                n = n.nextSibling;
+            }
+        }
+
+        scanner(el);
+
+        return nodes;
+    }
+};
+
+module.exports = html;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*
+ * 	Originally was Observable Slim
+ *	Version 0.0.4
+ * 	https://github.com/elliotnb/observable-slim
+ *
+ * 	Licensed under the MIT license:
+ * 	http://www.opensource.org/licenses/MIT
+ *
+ *	Observable Slim is a singleton that allows you to observe changes made to an object and any nested
+ *	children of that object. It is intended to assist with one-way data binding, that is, in MVC parlance,
+ *	reflecting changes in the model to the app. Observable Slim aspires to be as lightweight and easily
+ *	understood as possible. Minifies down to roughly 3000 characters.
+ */
+
+function sanitize(str) {
+    return typeof str === 'string' ? str.replace(/&(?!\w+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') : str;
+}
+
+/**
+ * ObservableSlim
+ * @type {{create, observe, pause, resume, remove, beforeChange}}
+ */
+var ObservableSlim = function () {
+    // An array that stores all of the observables created through the public create() method below.
+    var observables = [];
+    // An array of all the objects that we have assigned Proxies to
+    var targets = [];
+
+    // An array of arrays containing the Proxies created for each target object. targetsProxy is index-matched with
+    // 'targets' -- together, the pair offer a Hash table where the key is not a string nor number, but the actual target object
+    var targetsProxy = [];
+
+    // this variable tracks duplicate proxies assigned to the same target.
+    // the 'set' handler below will trigger the same change on all other Proxies tracking the same target.
+    // however, in order to avoid an infinite loop of Proxies triggering and re-triggering one another, we use dupProxy
+    // to track that a given Proxy was modified from the 'set' handler
+    var dupProxy = null;
+
+    var _getProperty = function _getProperty(obj, path) {
+        return path.split('.').reduce(function (prev, curr) {
+            return prev ? prev[curr] : undefined;
+        }, obj || self);
+    };
+
+    /**
+     * _create
+     * @description Private internal function that is invoked to create a new ES6 Proxy whose changes we can observe through the Observerable.observe() method.
+     * @param target {Object} required, plain JavaScript object that we want to observe for changes.
+     * @param domDelay {Boolean|Null} batch up changes on a 10ms delay so a series of changes can be processed in one DOM update.
+     * @param originalObservable {Object} the original observable created by the user, exists for recursion purposes, allows one observable to observe change on any nested/child objects.
+     * @param originalPath {String} the path of the property in relation to the target on the original observable, exists for recursion purposes, allows one observable to observe change on any nested/child objects.
+     * @returns {Object}
+     * @private
+     */
+    var _create = function _create(target, domDelay, originalObservable, originalPath) {
+
+        var autoDomDelay = domDelay == null;
+        var observable = originalObservable || null;
+        var path = originalPath || '';
+
+        var changes = [];
+
+        var _getPath = function _getPath(target, property) {
+            if (target instanceof Array) {
+                return path !== '' ? path : property;
+            } else {
+                return path !== '' ? path + '.' + property : property;
+            }
+        };
+
+        var calls = 0;
+
+        var _notifyObservers = function _notifyObservers(numChanges) {
+
+            // if the observable is paused, then we don't want to execute any of the observer functions
+            if (observable.paused === true) return;
+
+            // reset calls number after 10ms
+            if (autoDomDelay) {
+                domDelay = ++calls > 1;
+                setTimeout(function () {
+                    calls = 0;
+                }, 10);
+            }
+
+            // execute observer functions on a 10ms settimeout, this prevents the observer functions from being executed
+            // separately on every change -- this is necessary because the observer functions will often trigger UI updates
+            if (domDelay === true) {
+                setTimeout(function () {
+                    if (numChanges === changes.length) {
+                        // invoke any functions that are observing changes
+                        for (var i = 0; i < observable.observers.length; i++) {
+                            observable.observers[i](changes);
+                        }changes = [];
+                    }
+                }, 10);
+            } else {
+                // invoke any functions that are observing changes
+                for (var i = 0; i < observable.observers.length; i++) {
+                    observable.observers[i](changes);
+                }changes = [];
+            }
+        };
+
+        var handler = {
+            get: function get(target, property) {
+
+                // implement a simple check for whether or not the object is a proxy, this helps the .create() method avoid
+                // creating Proxies of Proxies.
+                if (property === '__getTarget') {
+                    return target;
+                } else if (property === '__isProxy') {
+                    return true;
+                    // from the perspective of a given observable on a parent object, return the parent object of the given nested object
+                } else if (property === '__getParent') {
+                    return function (i) {
+                        if (typeof i === 'undefined') i = 1;
+                        var parentPath = _getPath(target, '__getParent').split('.');
+                        parentPath.splice(-(i + 1), i + 1);
+                        return _getProperty(observable.parentProxy, parentPath.join('.'));
+                    };
+                }
+
+                // for performance improvements, we assign this to a variable so we do not have to lookup the property value again
+                var targetProp = target[property];
+
+                // if we are traversing into a new object, then we want to record path to that object and return a new observable.
+                // recursively returning a new observable allows us a single Observable.observe() to monitor all changes on
+                // the target object and any objects nested within.
+                if (targetProp instanceof Object && targetProp !== null && target.hasOwnProperty(property)) {
+
+                    // if we've found a proxy nested on the object, then we want to retrieve the original object behind that proxy
+                    if (targetProp.__isProxy === true) targetProp = targetProp.__getTarget;
+
+                    // if we've previously setup a proxy on this target, then...
+                    //let a = observable.targets.indexOf(targetProp);
+                    var a = -1;
+                    var observableTargets = observable.targets;
+                    for (var i = 0, l = observableTargets.length; i < l; i++) {
+                        if (targetProp === observableTargets[i]) {
+                            a = i;
+                            break;
+                        }
+                    }
+                    if (a > -1) return observable.proxies[a];
+
+                    // if we're arrived here, then that means there is no proxy for the object the user just accessed, so we
+                    // have to create a new proxy for it
+                    var newPath = path !== '' ? path + '.' + property : property;
+
+                    return _create(targetProp, domDelay, observable, newPath);
+                } else {
+                    return observable.renderMode ? sanitize(targetProp) : targetProp;
+                }
+            },
+            deleteProperty: function deleteProperty(target, property) {
+
+                // was this change an original change or was it a change that was re-triggered below
+                var originalChange = true;
+                if (dupProxy === proxy) {
+                    originalChange = false;
+                    dupProxy = null;
+                }
+
+                // in order to report what the previous value was, we must make a copy of it before it is deleted
+                var previousValue = Object.assign({}, target);
+
+                // get the path of the property being deleted
+                var currentPath = _getPath(target, property);
+
+                // record the deletion that just took place
+                changes.push({
+                    type: 'delete',
+                    target: target,
+                    property: property,
+                    newValue: null,
+                    previousValue: previousValue[property],
+                    currentPath: currentPath,
+                    proxy: proxy
+                });
+
+                if (typeof observable.beforeChange === 'function' && observable.checkBeforeChange !== currentPath) {
+                    observable.checkBeforeChange = currentPath;
+                    var res = observable.beforeChange(changes);
+                    if (res === false) {
+                        observable.checkBeforeChange = '';
+                        return false;
+                    }
+                }
+
+                observable.checkBeforeChange = '';
+
+                if (originalChange === true) {
+                    var a = void 0,
+                        l = void 0;
+                    for (a = 0, l = targets.length; a < l; a++) {
+                        if (target === targets[a]) break;
+                    } // loop over each proxy and see if the target for this change has any other proxies
+                    var currentTargetProxy = targetsProxy[a];
+
+                    var b = currentTargetProxy.length;
+                    while (b--) {
+                        // if the same target has a different proxy
+                        if (currentTargetProxy[b].proxy !== proxy) {
+                            // !!IMPORTANT!! store the proxy as a duplicate proxy (dupProxy) -- this will adjust the behavior above appropriately (that is,
+                            // prevent a change on dupProxy from re-triggering the same change on other proxies)
+                            dupProxy = currentTargetProxy[b].proxy;
+
+                            // make the same delete on the different proxy for the same target object. it is important that we make this change *after* we invoke the same change
+                            // on any other proxies so that the previousValue can show up correct for the other proxies
+                            delete currentTargetProxy[b].proxy[property];
+                        }
+                    }
+
+                    // perform the delete that we've trapped
+                    delete target[property];
+                }
+
+                _notifyObservers(changes.length);
+
+                return true;
+            },
+            set: function set(target, property, value, receiver) {
+
+                // was this change an original change or was it a change that was re-triggered below
+                var originalChange = true;
+                if (dupProxy === proxy) {
+                    originalChange = false;
+                    dupProxy = null;
+                }
+
+                // improve performance by saving direct references to the property
+                var targetProp = target[property];
+
+                // only record a change if the new value differs from the old one OR if this proxy was not the original proxy to receive the change
+                if (targetProp !== value || originalChange === false) {
+
+                    var typeOfTargetProp = typeof targetProp === 'undefined' ? 'undefined' : _typeof(targetProp);
+
+                    // get the path of the object property being modified
+                    var currentPath = _getPath(target, property);
+
+                    // determine if we're adding something new or modifying somethat that already existed
+                    var type = 'update';
+                    if (typeOfTargetProp === 'undefined') type = 'add';
+
+                    // store the change that just occurred. it is important that we store the change before invoking the other proxies so that the previousValue is correct
+                    changes.push({
+                        type: type,
+                        target: target,
+                        property: property,
+                        newValue: value,
+                        previousValue: receiver[property],
+                        currentPath: currentPath,
+                        proxy: proxy
+                    });
+
+                    if (typeof observable.beforeChange === 'function' && observable.checkBeforeChange !== currentPath) {
+                        observable.checkBeforeChange = currentPath;
+                        var res = observable.beforeChange(changes);
+                        if (res === false) {
+                            observable.checkBeforeChange = '';
+                            return false;
+                        }
+                    }
+
+                    observable.checkBeforeChange = '';
+
+                    // !!IMPORTANT!! if this proxy was the first proxy to receive the change, then we need to go check and see
+                    // if there are other proxies for the same project. if there are, then we will modify those proxies as well so the other
+                    // observers can be modified of the change that has occurred.
+                    if (originalChange === true) {
+
+                        var a = void 0,
+                            l = void 0;
+                        for (a = 0, l = targets.length; a < l; a++) {
+                            if (target === targets[a]) break;
+                        } // loop over each proxy and see if the target for this change has any other proxies
+                        var currentTargetProxy = targetsProxy[a];
+                        if (currentTargetProxy) for (var b = 0, _l = currentTargetProxy.length; b < _l; b++) {
+                            // if the same target has a different proxy
+                            if (currentTargetProxy[b].proxy !== proxy) {
+
+                                // !!IMPORTANT!! store the proxy as a duplicate proxy (dupProxy) -- this will adjust the behavior above appropriately (that is,
+                                // prevent a change on dupProxy from re-triggering the same change on other proxies)
+                                dupProxy = currentTargetProxy[b].proxy;
+
+                                // invoke the same change on the different proxy for the same target object. it is important that we make this change *after* we invoke the same change
+                                // on any other proxies so that the previousValue can show up correct for the other proxies
+                                currentTargetProxy[b].proxy[property] = value;
+                            }
+                        }
+
+                        // if the property being overwritten is an object, then that means this observable
+                        // will need to stop monitoring this object and any nested objects underneath the overwritten object else they'll become
+                        // orphaned and grow memory usage. we excute this on a setTimeout so that the clean-up process does not block
+                        // the UI rendering -- there's no need to execute the clean up immediately
+                        setTimeout(function () {
+
+                            if (typeOfTargetProp === 'object' && targetProp !== null) {
+
+                                // check if the to-be-overwritten target property still exists on the target object
+                                // if it does still exist on the object, then we don't want to stop observing it. this resolves
+                                // an issue where array .sort() triggers objects to be overwritten, but instead of being overwritten
+                                // and discarded, they are shuffled to a new position in the array
+                                var keys = Object.keys(target);
+                                for (var i = 0, _l2 = keys.length; i < _l2; i++) {
+                                    if (target[keys[i]] === targetProp) {
+                                        //console.log('target still exists');
+                                        return;
+                                    }
+                                }
+
+                                // loop over each property and recursively invoke the `iterate` function for any
+                                // objects nested on targetProp
+                                (function iterate(obj) {
+
+                                    var keys = Object.keys(obj);
+                                    for (var _i = 0, _l3 = keys.length; _i < _l3; _i++) {
+                                        var objProp = obj[keys[_i]];
+                                        if (objProp instanceof Object && objProp !== null) iterate(objProp);
+                                    }
+
+                                    // if there are any existing target objects (objects that we're already observing)...
+                                    //let c = targets.indexOf(obj);
+                                    var c = -1;
+                                    for (var _i2 = 0, _l4 = targets.length; _i2 < _l4; _i2++) {
+                                        if (obj === targets[_i2]) {
+                                            c = _i2;
+                                            break;
+                                        }
+                                    }
+                                    if (c > -1) {
+
+                                        // ...then we want to determine if the observables for that object match our current observable
+                                        var _currentTargetProxy = targetsProxy[c];
+                                        var d = _currentTargetProxy.length;
+
+                                        while (d--) {
+                                            // if we do have an observable monitoring the object thats about to be overwritten
+                                            // then we can remove that observable from the target object
+                                            if (observable === _currentTargetProxy[d].observable) {
+                                                _currentTargetProxy.splice(d, 1);
+                                                break;
+                                            }
+                                        }
+
+                                        // if there are no more observables assigned to the target object, then we can remove
+                                        // the target object altogether. this is necessary to prevent growing memory consumption particularly with large data sets
+                                        if (_currentTargetProxy.length === 0) {
+                                            targetsProxy.splice(c, 1);
+                                            targets.splice(c, 1);
+                                        }
+                                    }
+                                })(targetProp);
+                            }
+                        }, 10000);
+
+                        // because the value actually differs than the previous value
+                        // we need to store the new value on the original target object
+                        target[property] = value;
+
+                        // TO DO: the next block of code resolves test case #24, but it results in poor IE11 performance. Find a solution.
+
+                        // if the value we've just set is an object, then we'll need to iterate over it in order to initialize the
+                        // observers/proxies on all nested children of the object
+                        if (value instanceof Object && value !== null) {
+                            (function iterate(proxy) {
+                                var target = proxy.__getTarget;
+                                var keys = Object.keys(target);
+                                for (var i = 0, _l5 = keys.length; i < _l5; i++) {
+                                    var _property = keys[i];
+                                    if (target[_property] instanceof Object && target[_property] !== null) iterate(proxy[_property]);
+                                }
+                            })(proxy[property]);
+                        }
+                    }
+
+                    // notify the observer functions that the target has been modified
+                    _notifyObservers(changes.length);
+                }
+                return true;
+            }
+        };
+
+        // create the proxy that we'll use to observe any changes
+        var proxy = new Proxy(target, handler);
+
+        // we don't want to create a new observable if this function was invoked recursively
+        if (observable === null) {
+            observable = {
+                parentTarget: target,
+                domDelay: domDelay,
+                parentProxy: proxy,
+                observers: [],
+                targets: [target],
+                proxies: [proxy],
+                paused: false,
+                path: path
+            };
+            observables.push(observable);
+        } else {
+            observable.targets.push(target);
+            observable.proxies.push(proxy);
+        }
+
+        // store the proxy we've created so it isn't re-created unnecessary via get handler
+        var proxyItem = { target: target, proxy: proxy, observable: observable };
+
+        //let targetPosition = targets.indexOf(target);
+        var targetPosition = -1;
+        for (var i = 0, l = targets.length; i < l; i++) {
+            if (target === targets[i]) {
+                targetPosition = i;
+                break;
+            }
+        }
+
+        // if we have already created a Proxy for this target object then we add it to the corresponding array
+        // on targetsProxy (targets and targetsProxy work together as a Hash table indexed by the actual target object).
+        if (targetPosition > -1) {
+            targetsProxy[targetPosition].push(proxyItem);
+            // else this is a target object that we have not yet created a Proxy for, so we must add it to targets,
+            // and push a new array on to targetsProxy containing the new Proxy
+        } else {
+            targets.push(target);
+            targetsProxy.push([proxyItem]);
+            targetPosition = targets.length - 1;
+        }
+
+        return proxy;
+    };
+
+    return {
+        /**
+         * Create
+         * @description Public method that is invoked to create a new ES6 Proxy whose changes we can observe through the Observerable.observe() method.
+         * @param target {Object} required, plain JavaScript object that we want to observe for changes.
+         * @param domDelay {Boolean} if true, then batch up changes on a 10ms delay so a series of changes can be processed in one DOM update.
+         * @param observer {Function} optional, will be invoked when a change is made to the proxy.
+         * @returns {Object}
+         */
+        create: function create(target, domDelay, observer) {
+
+            // test if the target is a Proxy, if it is then we need to retrieve the original object behind the Proxy.
+            // we do not allow creating proxies of proxies because -- given the recursive design of ObservableSlim -- it would lead to sharp increases in memory usage
+            if (target.__isProxy === true) {
+                target = target.__getTarget;
+                //if it is, then we should throw an error. we do not allow creating proxies of proxies
+                // because -- given the recursive design of ObservableSlim -- it would lead to sharp increases in memory usage
+                //throw new Error('ObservableSlim.create() cannot create a Proxy for a target object that is also a Proxy.');
+            }
+
+            // fire off the _create() method -- it will create a new observable and proxy and return the proxy
+            var proxy = _create(target, domDelay);
+
+            // assign the observer function
+            if (typeof observer === 'function') this.observe(proxy, observer);
+
+            // recursively loop over all nested objects on the proxy we've just created
+            // this will allow the top observable to observe any changes that occur on a nested object
+            (function iterate(proxy) {
+                var target = proxy.__getTarget;
+                var keys = Object.keys(target);
+                for (var i = 0, l = keys.length; i < l; i++) {
+                    var property = keys[i];
+                    if (target[property] instanceof Object && target[property] !== null) iterate(proxy[property]);
+                }
+            })(proxy);
+
+            return proxy;
+        },
+
+        /**
+         * observe
+         * @description This method is used to add a new observer function to an existing proxy.
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method. We want to observe changes made to this object.
+         * @param observer {Function} this function will be invoked when a change is made to the observable (not to be confused with the observer defined in the create() method).
+         */
+        observe: function observe(proxy, observer) {
+            // loop over all the observables created by the _create() function
+            var i = observables.length;
+            while (i--) {
+                if (observables[i].parentProxy === proxy) {
+                    observables[i].observers.push(observer);
+                    break;
+                }
+            }
+        },
+
+        /**
+         * Pause
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method
+         */
+        pause: function pause(proxy) {
+            var i = observables.length;
+            var foundMatch = false;
+            while (i--) {
+                if (observables[i].parentProxy === proxy) {
+                    observables[i].paused = true;
+                    foundMatch = true;
+                    break;
+                }
+            }
+            if (foundMatch === false) throw new Error('DOZ could not pause observable -- matching proxy not found.');
+        },
+
+        /**
+         * Resume
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method
+         */
+        resume: function resume(proxy) {
+            var i = observables.length;
+            var foundMatch = false;
+            while (i--) {
+                if (observables[i].parentProxy === proxy) {
+                    observables[i].paused = false;
+                    foundMatch = true;
+                    break;
+                }
+            }
+            if (foundMatch === false) throw new Error('DOZ could not resume observable -- matching proxy not found.');
+        },
+
+        /**
+         * Remove
+         * @description this method will remove the observable and proxy thereby preventing any further callback observers for changes occuring to the target object.
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method
+         */
+        remove: function remove(proxy) {
+
+            var matchedObservable = null;
+            var foundMatch = false;
+
+            var c = observables.length;
+            while (c--) {
+                if (observables[c].parentProxy === proxy) {
+                    matchedObservable = observables[c];
+                    foundMatch = true;
+                    break;
+                }
+            }
+            var a = targetsProxy.length;
+            while (a--) {
+                var b = targetsProxy[a].length;
+                while (b--) {
+                    if (targetsProxy[a][b].observable === matchedObservable) {
+                        targetsProxy[a].splice(b, 1);
+                        if (targetsProxy[a].length === 0) {
+                            targetsProxy.splice(a, 1);
+                            targets.splice(a, 1);
+                        }
+                    }
+                }
+            }
+            if (foundMatch === true) {
+                observables.splice(c, 1);
+            }
+        },
+
+        /**
+         * beforeChange
+         * @description This method accepts a function will be invoked before changes.
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method.
+         * @param callback {Function} will be invoked before every change is made to the proxy, if it returns false no changes will be made.
+         */
+        beforeChange: function beforeChange(proxy, callback) {
+            if (typeof callback !== 'function') throw new Error('Callback function is required');
+
+            var i = observables.length;
+            var foundMatch = false;
+            while (i--) {
+                if (observables[i].parentProxy === proxy) {
+                    observables[i].beforeChange = callback;
+                    foundMatch = true;
+                    break;
+                }
+            }
+            if (foundMatch === false) throw new Error('DOZ -- matching proxy not found.');
+        },
+
+        /**
+         * beginRender
+         * @description This method set renderMode to true so the param in get is sanitized.
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method.
+         */
+        beginRender: function beginRender(proxy) {
+            var i = observables.length;
+            var foundMatch = false;
+            while (i--) {
+                if (observables[i].parentProxy === proxy) {
+                    observables[i].renderMode = true;
+                    foundMatch = true;
+                    break;
+                }
+            }
+            if (foundMatch === false) throw new Error('DOZ -- matching proxy not found.');
+        },
+
+        /**
+         * endRender
+         * @description This method set renderMode to false.
+         * @param proxy {Proxy} the ES6 Proxy returned by the create() method.
+         */
+        endRender: function endRender(proxy) {
+            var i = observables.length;
+            var foundMatch = false;
+            while (i--) {
+                if (observables[i].parentProxy === proxy) {
+                    observables[i].renderMode = false;
+                    foundMatch = true;
+                    break;
+                }
+            }
+            if (foundMatch === false) throw new Error('DOZ -- matching proxy not found.');
+        }
+    };
+}();
+
+module.exports = ObservableSlim;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var deprecate = __webpack_require__(19);
+
+function callBeforeCreate(context) {
+    if (typeof context.onBeforeCreate === 'function') {
+        return context.onBeforeCreate.call(context);
+    }
+}
+
+function callCreate(context) {
+    if (typeof context.onCreate === 'function') {
+        context.onCreate.call(context);
+    }
+}
+
+function callRender(context) {
+    if (typeof context.onRender === 'function') {
+        deprecate.once('onRender is deprecated since v. 1.0.0, use onMount instead');
+        context.onRender.call(context);
+    }
+}
+
+function callBeforeMount(context) {
+    if (typeof context.onBeforeMount === 'function') {
+        return context.onBeforeMount.call(context);
+    }
+}
+
+function callMount(context) {
+    if (typeof context.onMount === 'function') {
+        context.onMount.call(context);
+    }
+}
+
+function callMountAsync(context) {
+    if (typeof context.onMountAsync === 'function') {
+        setTimeout(function () {
+            context.onMountAsync.call(context);
+        });
+    }
+}
+
+function callBeforeUpdate(context, changes) {
+    if (typeof context.onBeforeUpdate === 'function') {
+        return context.onBeforeUpdate.call(context, changes);
+    }
+}
+
+function callUpdate(context, changes) {
+    if (typeof context.onUpdate === 'function') {
+        context.onUpdate.call(context, changes);
+    }
+}
+
+function callBeforeUnmount(context) {
+    if (typeof context.onBeforeUnmount === 'function') {
+        return context.onBeforeUnmount.call(context);
+    }
+}
+
+function callUnmount(context) {
+    if (typeof context.onUnmount === 'function') {
+        context.onUnmount.call(context);
+    }
+}
+
+function callBeforeDestroy(context) {
+    if (typeof context.onBeforeDestroy === 'function') {
+        return context.onBeforeDestroy.call(context);
+    }
+}
+
+function callDestroy(context) {
+    if (typeof context.onDestroy === 'function') {
+        context.onDestroy.call(context);
+        context = null;
+    }
+}
+
+module.exports = {
+    callBeforeCreate: callBeforeCreate,
+    callCreate: callCreate,
+    callRender: callRender,
+    callBeforeMount: callBeforeMount,
+    callMount: callMount,
+    callMountAsync: callMountAsync,
+    callBeforeUpdate: callBeforeUpdate,
+    callUpdate: callUpdate,
+    callBeforeUnmount: callBeforeUnmount,
+    callUnmount: callUnmount,
+    callBeforeDestroy: callBeforeDestroy,
+    callDestroy: callDestroy
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function delay(cb) {
+    if (window.requestAnimationFrame !== undefined) return window.requestAnimationFrame(cb);else return window.setTimeout(cb);
+}
+
+module.exports = delay;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var castStringTo = __webpack_require__(9);
+var dashToCamel = __webpack_require__(10);
+
+var _require = __webpack_require__(0),
+    REGEX = _require.REGEX,
+    ATTR = _require.ATTR;
+
+function serializeProps(node) {
+    var props = {};
+    if (node.attributes) {
+        var attributes = Array.from(node.attributes);
+        for (var j = attributes.length - 1; j >= 0; --j) {
+            var attr = attributes[j];
+            var isComponentListener = attr.name.match(REGEX.IS_COMPONENT_LISTENER);
+            if (isComponentListener) {
+                if (props[ATTR.LISTENER] === undefined) props[ATTR.LISTENER] = {};
+                props[ATTR.LISTENER][isComponentListener[1]] = attr.nodeValue;
+                delete props[attr.name];
+            } else {
+                var value = attr.nodeValue;
+                if (REGEX.IS_STRING_QUOTED.test(value)) value = attr.nodeValue.replace(/"/g, '&quot;');
+                props[REGEX.IS_CUSTOM_TAG.test(node.nodeName) ? dashToCamel(attr.name) : attr.name] = attr.name === ATTR.FORCE_UPDATE ? true : castStringTo(value);
+            }
+        }
+    }
+    return props;
+}
+
+function transform(node) {
+
+    var root = {};
+
+    function walking(node, parent) {
+        while (node) {
+            var obj = void 0;
+
+            if (node.nodeType === 3) {
+                obj = node.nodeValue;
+            } else {
+                obj = {};
+                obj.type = node.nodeName; //.toLowerCase();
+                obj.children = [];
+                obj.props = serializeProps(node);
+                obj.isSVG = typeof node.ownerSVGElement !== 'undefined';
+                //console.dir(node);
+            }
+
+            if (!Object.keys(root).length) root = obj;
+
+            if (parent && parent.children) {
+                parent.children.push(obj);
+            }
+
+            if (node.hasChildNodes()) {
+                walking(node.firstChild, obj);
+            }
+
+            node = node.nextSibling;
+        }
+    }
+
+    walking(node, root);
+
+    return root;
+}
+
+module.exports = {
+    transform: transform,
+    serializeProps: serializeProps
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function castStringTo(obj) {
+
+    if (typeof obj !== 'string') {
+        return obj;
+    }
+
+    switch (obj) {
+        case 'undefined':
+            return undefined;
+        case 'null':
+            return null;
+        case 'NaN':
+            return NaN;
+        case 'Infinity':
+            return Infinity;
+        case 'true':
+            return true;
+        case 'false':
+            return false;
+        case '0':
+            return 0; //obj;
+        default:
+            try {
+                return JSON.parse(obj);
+            } catch (e) {}
+            break;
+    }
+
+    var num = parseFloat(obj);
+    if (!isNaN(num) && isFinite(obj)) {
+        if (obj.toLowerCase().indexOf('0x') === 0) {
+            return parseInt(obj, 16);
+        }
+        return num;
+    }
+
+    return obj;
+}
+
+module.exports = castStringTo;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function dashToCamel(s) {
+    return s.replace(/(-\w)/g, function (m) {
+        return m[1].toUpperCase();
+    });
+}
+
+module.exports = dashToCamel;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var element = __webpack_require__(20);
+
+module.exports = {
+    updateElement: element.update
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function camelToDash(s) {
+    return s.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase();
+}
+
+module.exports = camelToDash;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var camelToDash = __webpack_require__(12);
+
+function toInlineStyle(obj) {
+    var withStyle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+    obj = Object.entries(obj).reduce(function (styleString, _ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            propName = _ref2[0],
+            propValue = _ref2[1];
+
+        return '' + styleString + camelToDash(propName) + ':' + propValue + ';';
+    }, '');
+    return withStyle ? 'style="' + obj + '"' : obj;
+}
+
+module.exports = toInlineStyle;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(15);
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(16);
+module.exports.component = __webpack_require__(32);
+module.exports.collection = __webpack_require__(2);
+module.exports.update = __webpack_require__(11).updateElement;
+module.exports.transform = __webpack_require__(8).transform;
+module.exports.html = __webpack_require__(4);
+module.exports.version = '1.4.3';
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var extend = __webpack_require__(1);
+var bind = __webpack_require__(17);
+var instances = __webpack_require__(3);
+
+var _require = __webpack_require__(0),
+    TAG = _require.TAG,
+    REGEX = _require.REGEX;
+
+var Doz = function () {
+    function Doz() {
+        var _this = this;
+
+        var cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, Doz);
+
+        var template = '<' + TAG.APP + '></' + TAG.APP + '>';
+
+        if (REGEX.IS_ID_SELECTOR.test(cfg.root)) {
+            cfg.root = document.getElementById(cfg.root.substring(1));
+        }
+
+        if (REGEX.IS_ID_SELECTOR.test(cfg.template)) {
+            cfg.template = document.getElementById(cfg.template.substring(1));
+            cfg.template = cfg.template.innerHTML;
+        }
+
+        if (!(cfg.root instanceof HTMLElement)) {
+            throw new TypeError('root must be an HTMLElement or an valid ID selector like #example-root');
+        }
+
+        if (!(cfg.template instanceof HTMLElement || typeof cfg.template === 'string' || typeof cfg.template === 'function')) {
+            throw new TypeError('template must be a string or an HTMLElement or a function or an valid ID selector like #example-template');
+        }
+
+        // Remove if already exists
+        var appNode = document.querySelector(TAG.APP);
+        if (appNode) {
+            appNode.parentNode.removeChild(appNode);
+        }
+
+        this.cfg = extend(cfg, {
+            components: [],
+            actions: {}
+        });
+
+        Object.defineProperties(this, {
+            _components: {
+                value: {},
+                writable: true
+            },
+            _usedComponents: {
+                value: {},
+                writable: true
+            },
+            _stores: {
+                value: {},
+                writable: true
+            },
+            _cache: {
+                value: new Map()
+            },
+            _ids: {
+                value: {},
+                writable: true
+            },
+            _onAppReadyCB: {
+                value: [],
+                writable: true
+            },
+            _callAppReady: {
+                value: function value() {
+                    this._onAppReadyCB.forEach(function (cb) {
+                        if (typeof cb === 'function' && cb._instance) {
+                            cb.call(cb._instance);
+                        }
+                    });
+
+                    this._onAppReadyCB = [];
+                }
+            },
+            _root: {
+                value: this.cfg.root
+            },
+            action: {
+                value: bind(this.cfg.actions, this),
+                enumerable: true
+            },
+            mount: {
+                value: function value(_template, root) {
+                    var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this._tree;
+
+
+                    if (typeof root === 'string') {
+                        root = document.querySelector(root);
+                    }
+
+                    root = root || parent._rootElement;
+
+                    if (!(root instanceof HTMLElement)) {
+                        throw new TypeError('root must be an HTMLElement or an valid selector like #example-root');
+                    }
+
+                    var autoCmp = {
+                        tag: TAG.MOUNT,
+                        cfg: {
+                            props: {},
+                            template: function template() {
+                                return '<' + TAG.ROOT + '>' + _template + '</' + TAG.ROOT + '>';
+                            }
+                        }
+                    };
+
+                    return instances.get({
+                        root: root,
+                        template: '<' + TAG.MOUNT + '></' + TAG.MOUNT + '>',
+                        app: this,
+                        parentCmp: parent,
+                        autoCmp: autoCmp,
+                        mount: true
+                    });
+                },
+                enumerable: true
+            }
+        });
+
+        if (Array.isArray(this.cfg.components)) {
+            this.cfg.components.forEach(function (cmp) {
+                if ((typeof cmp === 'undefined' ? 'undefined' : _typeof(cmp)) === 'object' && typeof cmp.tag === 'string' && _typeof(cmp.cfg) === 'object') {
+                    _this._components[cmp.tag] = cmp;
+                }
+            });
+        } else if (_typeof(this.cfg.components) === 'object') {
+            Object.keys(this.cfg.components).forEach(function (objName) {
+                _this._components[objName] = {
+                    tag: objName,
+                    cfg: _this.cfg.components[objName]
+                };
+            });
+        }
+
+        this._components[TAG.APP] = {
+            tag: TAG.APP,
+            cfg: {
+                template: typeof cfg.template === 'function' ? cfg.template : function () {
+                    return cfg.template;
+                }
+            }
+        };
+
+        Object.keys(cfg).forEach(function (p) {
+            if (!['template', 'root'].includes(p)) _this._components[TAG.APP].cfg[p] = cfg[p];
+        });
+
+        this._tree = instances.get({ root: this.cfg.root, template: template, app: this }) || [];
+        this._callAppReady();
+    }
+
+    _createClass(Doz, [{
+        key: 'getComponent',
+        value: function getComponent(alias) {
+            return this._tree ? this._tree.children[alias] : undefined;
+        }
+    }, {
+        key: 'getComponentById',
+        value: function getComponentById(id) {
+            return this._ids[id];
+        }
+    }, {
+        key: 'getStore',
+        value: function getStore(store) {
+            return this._stores[store];
+        }
+    }]);
+
+    return Doz;
+}();
+
+module.exports = Doz;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function bind(obj, context) {
+    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object') {
+        throw new TypeError('expected an object');
+    }
+
+    var target = Object.assign({}, obj);
+
+    var keys = Object.keys(obj);
+
+    for (var i = keys.length - 1; i >= 0; --i) {
+        var item = target[keys[i]];
+        if (typeof item === 'function') {
+            target[keys[i]] = item.bind(context);
+        } else if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
+            target[keys[i]] = bind(item, context);
+        }
+    }
+
+    return target;
+}
+
+module.exports = bind;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var proxy = __webpack_require__(5);
+var events = __webpack_require__(6);
+var delay = __webpack_require__(7);
+
+function updateBound(instance, changes) {
+    changes.forEach(function (item) {
+        if (instance._boundElements.hasOwnProperty(item.property)) {
+            instance._boundElements[item.property].forEach(function (element) {
+                if (element.type === 'checkbox') {
+                    if (!element.defaultValue) element.checked = item.newValue;else if (Array.isArray(item.newValue)) {
+                        var inputs = document.querySelectorAll('input[name=' + element.name + '][type=checkbox]');
+                        [].concat(_toConsumableArray(inputs)).forEach(function (input) {
+                            return input.checked = item.newValue.includes(input.value);
+                        });
+                    }
+                } else if (element.type === 'radio') {
+                    element.checked = element.value === item.newValue;
+                } else if (element.type === 'select-multiple' && Array.isArray(item.newValue)) {
+                    [].concat(_toConsumableArray(element.options)).forEach(function (option) {
+                        return option.selected = item.newValue.includes(option.value);
+                    });
+                } else {
+                    element.value = item.newValue;
+                }
+            });
+        }
+    });
+}
+
+function create(instance, props) {
+    instance.props = proxy.create(props, null, function (changes) {
+        instance.render();
+        updateBound(instance, changes);
+        if (instance._isCreated) {
+            delay(function () {
+                events.callUpdate(instance, changes);
+            });
+        }
+    });
+
+    proxy.beforeChange(instance.props, function (changes) {
+        var res = events.callBeforeUpdate(instance, changes);
+        if (res === false) return false;
+    });
+}
+
+module.exports = {
+    create: create
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _list = [];
+
+/**
+ * Simple deprecate
+ * @param prop {*}
+ * @param msg {string}
+ * @returns {boolean}
+ */
+var deprecate = function deprecate(prop, msg) {
+    if (typeof prop !== 'undefined') {
+        msg = msg || prop;
+
+        if (!_list.includes(msg)) _list.push(msg);
+
+        console.warn('[' + deprecate.title + ']', msg);
+        return true;
+    }
+    return false;
+};
+
+deprecate.title = 'DeprecationWarning';
+
+/**
+ * Calls only once same deprecation
+ * @param args
+ * @returns {boolean}
+ */
+var once = function once() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
+    if (_list.includes(args[1] || args[0])) return false;
+    return deprecate.apply(undefined, args);
+};
+
+module.exports = deprecate;
+module.exports.once = once;
+module.exports._list = _list;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _require = __webpack_require__(21),
+    attach = _require.attach,
+    updateAttributes = _require.updateAttributes;
+
+var deadChildren = [];
+
+var _require2 = __webpack_require__(0),
+    INSTANCE = _require2.INSTANCE,
+    TAG = _require2.TAG,
+    NS = _require2.NS,
+    CMP_INSTANCE = _require2.CMP_INSTANCE;
+
+function isChanged(nodeA, nodeB) {
+    return (typeof nodeA === 'undefined' ? 'undefined' : _typeof(nodeA)) !== (typeof nodeB === 'undefined' ? 'undefined' : _typeof(nodeB)) || typeof nodeA === 'string' && nodeA !== nodeB || nodeA.type !== nodeB.type || nodeA.props && nodeA.props.forceupdate;
+}
+
+function create(node, cmp, initial) {
+    if (typeof node === 'undefined') return;
+
+    if (typeof node === 'string') {
+        return document.createTextNode(node);
+    }
+
+    if (node.type[0] === '#') {
+        node.type = TAG.EMPTY;
+    }
+
+    var $el = node.isSVG ? document.createElementNS(NS.SVG, node.type) : document.createElement(node.type);
+
+    attach($el, node.props, cmp);
+
+    node.children.map(function (item) {
+        return create(item, cmp, initial);
+    }).forEach($el.appendChild.bind($el));
+
+    if (node.type.indexOf('-') !== -1 && !initial) {
+        //console.log('ADD TO DYNAMIC', $el)
+        cmp._processing.push({ node: $el, action: 'create' });
+    }
+
+    return $el;
+}
+
+function update($parent, newNode, oldNode) {
+    var index = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var cmp = arguments[4];
+    var initial = arguments[5];
+
+
+    if (!$parent) return;
+
+    if (!oldNode) {
+        var rootElement = create(newNode, cmp, initial);
+        $parent.appendChild(rootElement);
+        return rootElement;
+    } else if (!newNode) {
+        if ($parent.childNodes[index]) {
+            deadChildren.push($parent.childNodes[index]);
+        }
+    } else if (isChanged(newNode, oldNode)) {
+        var newElement = create(newNode, cmp, initial);
+        var oldElement = $parent.childNodes[index];
+
+        //Re-assign CMP INSTANCE to new element
+        if (oldElement[CMP_INSTANCE]) {
+            newElement[CMP_INSTANCE] = oldElement[CMP_INSTANCE];
+            newElement[CMP_INSTANCE]._rootElement = newElement;
+        }
+
+        $parent.replaceChild(newElement, oldElement);
+        return newElement;
+    } else if (newNode.type) {
+        var updated = updateAttributes($parent.childNodes[index], newNode.props, oldNode.props, cmp);
+
+        if ($parent.childNodes[index]) {
+            var dynInstance = $parent.childNodes[index][INSTANCE];
+            if (dynInstance && updated.length) {
+                updated.forEach(function (props) {
+                    Object.keys(props).forEach(function (name) {
+                        dynInstance.props[name] = props[name];
+                    });
+                });
+
+                return;
+            }
+        }
+
+        var newLength = newNode.children.length;
+        var oldLength = oldNode.children.length;
+
+        for (var i = 0; i < newLength || i < oldLength; i++) {
+            update($parent.childNodes[index], newNode.children[i], oldNode.children[i], i, cmp, initial);
+        }
+
+        clearDead();
+    }
+}
+
+function clearDead() {
+    var dl = deadChildren.length;
+
+    while (dl--) {
+        deadChildren[dl].parentNode.removeChild(deadChildren[dl]);
+        deadChildren.splice(dl, 1);
+    }
+}
+
+module.exports = {
+    create: create,
+    update: update
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var _require = __webpack_require__(0),
+    REGEX = _require.REGEX,
+    ATTR = _require.ATTR,
+    CMP_INSTANCE = _require.CMP_INSTANCE;
+
+var castStringTo = __webpack_require__(9);
+var dashToCamel = __webpack_require__(10);
+var camelToDash = __webpack_require__(12);
+var objectPath = __webpack_require__(22);
+var delay = __webpack_require__(7);
+
+function isEventAttribute(name) {
+    return REGEX.IS_LISTENER.test(name);
+}
+
+function isBindAttribute(name) {
+    return name === ATTR.BIND;
+}
+
+function isRefAttribute(name) {
+    return name === ATTR.REF;
+}
+
+function canBind($target) {
+    return ['INPUT', 'TEXTAREA', 'SELECT'].indexOf($target.nodeName) !== -1;
+}
+
+function setAttribute($target, name, value, cmp) {
+    if (REGEX.IS_CUSTOM_TAG.test($target.nodeName)) name = camelToDash(name);
+    if (isCustomAttribute(name)) {} else if (typeof value === 'boolean') {
+        setBooleanAttribute($target, name, value);
+    } else if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
+        try {
+            $target.setAttribute(name, JSON.stringify(value));
+        } catch (e) {}
+    } else {
+        $target.setAttribute(name, value);
+    }
+}
+
+function removeAttribute($target, name, value) {
+    if (isCustomAttribute(name) || !$target) {} else {
+        $target.removeAttribute(name);
+    }
+}
+
+function updateAttribute($target, name, newVal, oldVal, cmp) {
+    if (newVal === '') {
+        removeAttribute($target, name, oldVal, cmp);
+        updateChildren(cmp, name, newVal, $target);
+    } else if (oldVal === '' || newVal !== oldVal) {
+        setAttribute($target, name, newVal, cmp);
+        updateChildren(cmp, name, newVal, $target);
+    }
+}
+
+function updateChildren(cmp, name, value, $target) {
+    if (cmp && cmp.updateChildrenProps && $target) {
+        name = dashToCamel(name);
+        var firstChild = $target.firstChild;
+        if (firstChild && firstChild[CMP_INSTANCE] && firstChild[CMP_INSTANCE]._publicProps.hasOwnProperty(name)) firstChild[CMP_INSTANCE].props[name] = value;
+    }
+}
+
+function updateAttributes($target, newProps) {
+    var oldProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var cmp = arguments[3];
+
+    var props = Object.assign({}, newProps, oldProps);
+    var updated = [];
+    Object.keys(props).forEach(function (name) {
+        updateAttribute($target, name, newProps[name], oldProps[name], cmp);
+        if (newProps[name] !== oldProps[name]) {
+            var obj = {};
+            obj[name] = newProps[name];
+            updated.push(obj);
+        }
+    });
+
+    return updated;
+}
+
+function isCustomAttribute(name) {
+    return isEventAttribute(name) || isBindAttribute(name) || isRefAttribute(name) || name === ATTR.FORCE_UPDATE;
+}
+
+function setBooleanAttribute($target, name, value) {
+    if (!$target) return;
+    $target.setAttribute(name, value);
+    $target[name] = value;
+}
+
+function extractEventName(name) {
+    return name.slice(2).toLowerCase();
+}
+
+function trimQuotes(str) {
+    return str.replace(REGEX.TRIM_QUOTES, '$1');
+}
+
+function addEventListener($target, name, value, cmp) {
+
+    if (!isEventAttribute(name)) return;
+
+    var match = value.match(REGEX.GET_LISTENER);
+
+    if (match) {
+        var args = null;
+        var handler = match[1];
+        var stringArgs = match[2];
+        if (stringArgs) {
+            args = stringArgs.split(',').map(function (item) {
+                item = item.trim();
+                return item === 'this' ? cmp : castStringTo(trimQuotes(item));
+            });
+        }
+
+        var isParentMethod = handler.match(REGEX.IS_PARENT_METHOD);
+
+        if (isParentMethod) {
+            handler = isParentMethod[1];
+            cmp = cmp.parent;
+        }
+
+        var method = objectPath(handler, cmp);
+
+        if (method !== undefined) {
+            value = args ? method.bind.apply(method, [cmp].concat(_toConsumableArray(args))) : method.bind(cmp);
+        }
+    }
+
+    if (typeof value === 'function') $target.addEventListener(extractEventName(name), value);else {
+        var _func = function _func() {
+            eval(value);
+        };
+        $target.addEventListener(extractEventName(name), _func.bind(cmp));
+    }
+}
+
+function setBind($target, name, value, cmp) {
+    if (!isBindAttribute(name) || !canBind($target)) return;
+    if (typeof cmp.props[value] !== 'undefined') {
+
+        var events = ['compositionstart', 'compositionend', 'input', 'change'];
+
+        events.forEach(function (event) {
+            $target.addEventListener(event, function (e) {
+                var _value = void 0;
+                if (this.type === 'checkbox') {
+                    if (!this.defaultValue) cmp.props[value] = this.checked;else {
+                        var inputs = document.querySelectorAll('input[name=' + this.name + '][type=checkbox]:checked');
+                        _value = [].concat(_toConsumableArray(inputs)).map(function (input) {
+                            return input.value;
+                        });
+                        cmp.props[value] = _value;
+                    }
+                } else {
+                    _value = this.value;
+                    if (this.multiple) {
+                        _value = [].concat(_toConsumableArray(this.options)).filter(function (option) {
+                            return option.selected;
+                        }).map(function (option) {
+                            return option.value;
+                        });
+                    }
+                    cmp.props[value] = _value;
+                }
+            });
+        });
+
+        if (cmp._boundElements.hasOwnProperty(value)) {
+            cmp._boundElements[value].push($target);
+        } else {
+            cmp._boundElements[value] = [$target];
+        }
+
+        return true;
+    }
+}
+
+function setRef($target, name, value, cmp) {
+    if (!isRefAttribute(name)) return;
+    cmp.ref[value] = $target;
+}
+
+function attach($target, props, cmp) {
+    var bindValue = void 0;
+
+    Object.keys(props).forEach(function (name) {
+        setAttribute($target, name, props[name], cmp);
+        addEventListener($target, name, props[name], cmp);
+        if (setBind($target, name, props[name], cmp)) {
+            bindValue = cmp.props[props[name]];
+        }
+        setRef($target, name, props[name], cmp);
+    });
+
+    for (var i in $target.dataset) {
+        if ($target.dataset.hasOwnProperty(i) && REGEX.IS_LISTENER.test(i)) {
+            addEventListener($target, i, $target.dataset[i], cmp);
+        }
+    }
+
+    if (typeof bindValue !== 'undefined') {
+        delay(function () {
+            var inputs = void 0;
+            if ($target.type === 'radio') {
+                inputs = document.querySelectorAll('input[name=' + $target.name + '][type=radio]');
+                inputs.forEach(function (input) {
+                    return input.checked = bindValue === input.value;
+                });
+            } else if ($target.type === 'checkbox') {
+                if ((typeof bindValue === 'undefined' ? 'undefined' : _typeof(bindValue)) === 'object') {
+                    inputs = document.querySelectorAll('input[name=' + $target.name + '][type=checkbox]');
+                    inputs.forEach(function (input) {
+                        return input.checked = Array.from(bindValue).includes(input.value);
+                    });
+                } else $target.checked = bindValue;
+            } else {
+                $target.value = bindValue;
+            }
+        });
+    }
+}
+
+module.exports = {
+    attach: attach,
+    updateAttributes: updateAttributes
+};
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function getByPath(path, obj) {
+    return path.split('.').reduce(function (res, prop) {
+        return res ? res[prop] : undefined;
+    }, obj);
+}
+
+function getLast(path, obj) {
+    if (path.indexOf('.') !== -1) {
+        path = path.split('.');
+        path.pop();
+        path = path.join('.');
+    }
+    return getByPath(path, obj);
+}
+
+module.exports = getByPath;
+module.exports.getLast = getLast;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function create(instance) {
+
+    if (typeof instance.store === 'string') {
+        if (instance.app._stores[instance.store] !== undefined) {
+            throw new Error('Store already defined: ' + instance.store);
+        }
+        instance.app._stores[instance.store] = instance.props;
+    }
+}
+
+module.exports = {
+    create: create
+};
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function create(instance) {
+
+    if (typeof instance.id === 'string') {
+        if (instance.app._ids[instance.id] !== undefined) {
+            throw new Error('ID already defined: ' + instance.id);
+        }
+        instance.app._ids[instance.id] = instance;
+    }
+}
+
+module.exports = {
+    create: create
+};
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
+    ATTR = _require.ATTR;
+
+function extract(props) {
+
+    var dProps = {};
+
+    if (props[ATTR.ALIAS] !== undefined) {
+        dProps['alias'] = props[ATTR.ALIAS];
+        delete props[ATTR.ALIAS];
+    }
+
+    if (props[ATTR.STORE] !== undefined) {
+        dProps['store'] = props[ATTR.STORE];
+        delete props[ATTR.STORE];
+    }
+
+    if (props[ATTR.LISTENER] !== undefined) {
+        dProps['callback'] = props[ATTR.LISTENER];
+        delete props[ATTR.LISTENER];
+    }
+
+    if (props[ATTR.ID] !== undefined) {
+        dProps['id'] = props[ATTR.ID];
+        delete props[ATTR.ID];
+    }
+
+    return dProps;
+}
+
+module.exports = {
+    extract: extract
+};
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function hmr(instance, _module) {
+    if (!_module || !_module.hot) return;
+    var NS_PROPS = '__doz_hmr_props_store__';
+    var NS_INIT_PROPS = '__doz_hmr_init_props_store__';
+
+    window[NS_PROPS] = window[NS_PROPS] || {};
+    window[NS_INIT_PROPS] = window[NS_INIT_PROPS] || {};
+    var id = _module.id;
+    window[NS_PROPS][id] = window[NS_PROPS][id] || new Map();
+    window[NS_INIT_PROPS][id] = window[NS_INIT_PROPS][id] || new Map();
+
+    Object.keys(instance.props).forEach(function (p) {
+        if (instance._initialProps[p] === window[NS_INIT_PROPS][id].get(p)) instance.props[p] = window[NS_PROPS][id].get(p) || instance.props[p];else instance.props[p] = instance._initialProps[p];
+    });
+
+    _module.hot.dispose(function () {
+        Object.keys(instance.props).forEach(function (p) {
+            window[NS_PROPS][id].set(p, instance.props[p]);
+            window[NS_INIT_PROPS][id].set(p, instance._initialProps[p]);
+        });
+    });
+}
+
+module.exports = hmr;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var composeStyle = __webpack_require__(28);
+
+function scoped(instance) {
+    if (_typeof(instance.style) !== 'object') return;
+
+    var styleId = instance.tag + '--style';
+    var styleExists = document.querySelector('#' + styleId);
+
+    if (styleExists) {
+        styleExists.innerHTML = composeStyle(instance.style, instance.tag);
+    } else {
+        var styleEl = document.createElement('style');
+        styleEl.id = styleId;
+        styleEl.innerHTML = composeStyle(instance.style, instance.tag);
+        document.head.appendChild(styleEl);
+    }
+}
+
+module.exports = {
+    scoped: scoped
+};
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var toInlineStyle = __webpack_require__(13);
+
+function composeStyle(style, tag) {
+    var out = '';
+    Object.keys(style).forEach(function (key) {
+        if (/^@media/.test(key)) {
+            out += key + ' {' + composeStyle(style[key], tag) + '}';
+        } else {
+            var properties = toInlineStyle(style[key], false);
+            key = tag + ' ' + key.replace(/(,)/g, '$1' + tag + ' ');
+            out += key + '{' + properties + '} ';
+        }
+    });
+    return out;
+}
+
+module.exports = composeStyle;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function add(instance) {
+    if (typeof instance.onAppReady === 'function') {
+        instance.onAppReady._instance = instance;
+        instance.app._onAppReadyCB.push(instance.onAppReady);
+    }
+}
+
+module.exports = {
+    add: add
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function extendInstance(instance, cfg, dProps) {
+    Object.assign(instance, cfg, dProps);
+
+    // Add local components
+    if (Array.isArray(cfg.components)) {
+        cfg.components.forEach(function (cmp) {
+            if ((typeof cmp === 'undefined' ? 'undefined' : _typeof(cmp)) === 'object' && typeof cmp.tag === 'string' && _typeof(cmp.cfg) === 'object') {
+                instance._components[cmp.tag] = cmp;
+            }
+        });
+        delete instance.components;
+    } else if (_typeof(cfg.components) === 'object') {
+        Object.keys(cfg.components).forEach(function (objName) {
+            instance._components[objName] = {
+                tag: objName,
+                cfg: cfg.components[objName]
+            };
+        });
+        delete instance.components;
+    }
+}
+
+module.exports = extendInstance;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function cloneObject(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+module.exports = cloneObject;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extend = __webpack_require__(1);
+
+var _require = __webpack_require__(2),
+    register = _require.register;
+
+var _require2 = __webpack_require__(0),
+    REGEX = _require2.REGEX;
+
+function component(tag) {
+    var cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+
+    if (typeof tag !== 'string') {
+        throw new TypeError('Tag must be a string');
+    }
+
+    if (!REGEX.IS_CUSTOM_TAG.test(tag)) {
+        throw new TypeError('Tag must contain a dash (-) like my-component');
+    }
+
+    var cmp = {};
+
+    cmp.tag = tag;
+
+    cmp.cfg = extend.copy(cfg, {
+        autoCreateChildren: true,
+        updateChildrenProps: true,
+        props: {},
+        template: function template() {
+            return '';
+        }
+    });
+
+    register(cmp);
+}
+
+module.exports = component;
+
+/***/ })
+/******/ ]);
+}); 
+},{}],7:[function(require,module,exports) {
 var define;
-var t;!function(e,r){"object"==typeof exports&&"object"==typeof module?module.exports=r():"function"==typeof t&&t.amd?t("DozRouter",[],r):"object"==typeof exports?exports.DozRouter=r():e.DozRouter=r()}("undefined"!=typeof self?self:this,function(){return function(t){var e={};function r(n){if(e[n])return e[n].exports;var i=e[n]={i:n,l:!1,exports:{}};return t[n].call(i.exports,i,i.exports,r),i.l=!0,i.exports}return r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=0)}([function(t,e,r){"use strict";t.exports=r(1)},function(t,e,r){"use strict";var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},i=r(2),o=i.REGEX,s=i.PATH,a=r(3),u=r(4);t.exports={props:{hash:"#",classActiveLink:"router-link-active",linkAttr:"router-link",mode:"hash",root:"/"},autoCreateChildren:!1,$_currentView:null,$_currentViewRaw:"",$_currentPath:null,$_routes:[],$_paramMap:{},$_param:{},$_routeNotFound:"",$_query:{},$_queryRaw:"",$_link:{},$_pauseHashListener:!1,$removeView:function(){this.$_currentView&&(this.$_currentView.destroy(),this.$_currentView=null)},$setView:function(t,e,r){var n=this.$_currentViewRaw===t;if(e&&n){var i=this.$_currentView.children[0],o=i[e];"function"==typeof o&&o.call(i,this)}else r&&n?this.$_currentView.children[0].render():(this.$removeView(),this.$_currentView=this.mount(t));this.$_currentViewRaw=t},$query:function(t){return this.$_query[t]},$param:function(t){return this.$_param[t]},$navigate:function(t,e){"history"===this.props.mode?(history.pushState(t,null,this.props.root+t),this.$_navigate(t,e)):(this.$_pauseHashListener=!0,window.location.href=this.props.hash+t,this.$_navigate(t,e),this.$_pauseHashListener=!1)},$_navigate:function(t,e){var r=this,i=!1,o=(t=t||window.location.hash.slice(this.props.hash.length)).split("?");if(t=u(o[0]),this.$_currentPath===t)return!1;this.$_queryRaw=o[1]||"";for(var s=0;s<this.$_routes.length;s++){var c=this.$_routes[s],h=new RegExp("^"+c.path+"$"),p=t.match(h);if(p){i=!0,"object"===(void 0===e?"undefined":n(e))?this.$_param=Object.assign({},e):function(){var t=r.$_paramMap[c.path];r.$_query=a(r.$_queryRaw),p.slice(1).forEach(function(e,n){r.$_param[t[n]]=e})}(),this.$_currentPath=t,this.$setView(c.view,c.cb,c.preserve);break}}return i||(this.$_currentPath=null,this.$setView(this.$_routeNotFound||'"'+t+'" not found')),this.$activeLink(),i},$activeLink:function(){var t=this;Object.keys(this.$_link).forEach(function(e){var r=Boolean(t.$_link[e].length>1&&t.$_queryRaw);t.$_link[e].forEach(function(n){var i=!0;r&&(i=new RegExp(t.$_queryRaw+"$","g").test(n.href)),e===t.$_currentPath&&i?n.classList.add(t.props.classActiveLink):n.classList.remove(t.props.classActiveLink)})})},$add:function(t,e){if(t===s.NOT_FOUND)this.$_routeNotFound=e;else{var r=[],n=u(t);n=n.replace(/:(\w+)/g,function(t,e){return r.push(e),"([\\w-]+)"}),this.$_paramMap[n]=r;var i=e.match(o.CHANGE);i&&(i=i[1]);var a=o.IS_PRESERVE.test(e);this.$_routes.push({path:n,view:e,cb:i,preserve:a})}},$remove:function(t){for(var e=0;e<this.$_routes.length;e++){this.$_routes[e].path===u(t)&&this.$_routes.splice(e,1)}},$bindLink:function(){var t=this;this.$_link={},document.querySelectorAll("["+this.props.linkAttr+"]").forEach(function(e){var r=e.pathname||e.href;"history"===t.props.mode?e.addEventListener("click",function(n){n.preventDefault();var i=r+e.search;history.pushState(i,null,t.props.root+i),t.$_navigate(i)}):e.href=t.props.hash+r+e.search;var n=r.split("?");r=u(n[0]),void 0===t.$_link[r]?t.$_link[r]=[e]:t.$_link[r].push(e)})},onAppReady:function(){var t=this;this.rawChildren.forEach(function(e){var r=e.match(o.ROUTE);r&&t.$add(r[1],e)}),this.$bindLink(),"history"===this.props.mode?window.addEventListener("popstate",function(e){t.$_navigate(e.state)}):window.addEventListener("hashchange",function(){t.$_pauseHashListener||t.$_navigate()}),window.addEventListener("DOMContentLoaded",function(){return t.$_navigate()})}}},function(t,e,r){"use strict";t.exports={REGEX:{ROUTE:/route(?:\s+)?=(?:\s+)?"(.*)"/,CHANGE:/route-change(?:\s+)?=(?:\s+)?"(.*?)"/,IS_PRESERVE:/\spreserve[>\s=]/},PATH:{NOT_FOUND:"*"}}},function(t,e,r){"use strict";t.exports=function(t){return t?JSON.parse('{"'+t.replace(/&/g,'","').replace(/=/g,'":"')+'"}',function(t,e){return""===t?e:decodeURIComponent(e)}):{}}},function(t,e,r){"use strict";t.exports=function(t){return t.toString().replace(/\/+$/,"").replace(/^\//,"")}}])});
-},{}],"o6xa":[function(require,module,exports) {
-"use strict";var n=require("doz");(0,n.component)("app-nav",{template:function(){return'\n            <nav>\n                <ul>\n                    <li>\n                        <a router-link href="/">Dashboard</a>\n                    </li>\n                    <li>\n                        <a router-link href="/users">Users</a>\n                    </li>\n                </ul>   \n            </nav>\n        '}});
-},{"doz":"F6m0"}],"NYpi":[function(require,module,exports) {
-"use strict";var n=require("doz");(0,n.component)("app-dashboard",{template:function(){return"\n            <div>\n                 <h1>Dashboard</h1>\n            </div>\n        "}});
-},{"doz":"F6m0"}],"R04H":[function(require,module,exports) {
-"use strict";var e=require("doz");(0,e.component)("app-users",{template:function(){return"\n            <div>\n                 <h1>Users</h1>\n            </div>\n        "}});
-},{"doz":"F6m0"}],"+cI+":[function(require,module,exports) {
-"use strict";var e=require("doz"),r=require("doz-router"),a=n(r);function n(e){return e&&e.__esModule?e:{default:e}}require("./nav"),require("./pages/dashboard"),require("./pages/users"),(0,e.component)("doz-router",a.default),(0,e.component)("app-ui",{template:function(){return'\n            <header>\n                <app-nav></app-nav>\n            </header>\n            <main>\n                <doz-router>\n                    <app-dashboard route="/"></app-dashboard>\n                    <app-users route="/users"></app-users>\n                </doz-router>\n            </main>\n            <footer>My basic app</footer>\n        '}});
-},{"doz":"F6m0","doz-router":"XUXT","./nav":"o6xa","./pages/dashboard":"NYpi","./pages/users":"R04H"}],"A2T1":[function(require,module,exports) {
-"use strict";var e=require("doz"),u=r(e);function r(e){return e&&e.__esModule?e:{default:e}}require("./cmp/ui"),new u.default({root:"#app",template:"\n        <app-ui></app-ui>\n    "});
-},{"doz":"F6m0","./cmp/ui":"+cI+"}]},{},["A2T1"], null)
+// [DOZ-ROUTER]  Build version: 0.1.4  
+ (function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("DozRouter", [], factory);
+	else if(typeof exports === 'object')
+		exports["DozRouter"] = factory();
+	else
+		root["DozRouter"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(1);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _require = __webpack_require__(2),
+    REGEX = _require.REGEX,
+    PATH = _require.PATH,
+    NS = _require.NS;
+
+var queryToObject = __webpack_require__(3);
+var clearPath = __webpack_require__(4);
+var normalizePath = __webpack_require__(5);
+
+module.exports = {
+    props: {
+        hash: '#',
+        classActiveLink: 'router-link-active',
+        linkAttr: 'router-link',
+        mode: 'hash',
+        /**
+         * Base root, works only in "history" mode
+         */
+        root: '/'
+    },
+
+    autoCreateChildren: false,
+
+    onCreate: function onCreate() {
+        //custom properties
+        this.$_currentView = null;
+        this.$_currentViewRaw = '';
+        this.$_currentFullPath = null;
+        this.$_currentPath = null;
+        this.$_routes = [];
+        this.$_paramMap = {};
+        this.$_param = {};
+        this.$_routeNotFound = '';
+        this.$_query = {};
+        this.$_queryRaw = '';
+        this.$_link = {};
+        this.$_pauseHashListener = false;
+    },
+
+
+    /**
+     * Remove current view
+     */
+    $removeView: function $removeView() {
+        if (this.$_currentView) {
+            this.$_currentView.destroy();
+            this.$_currentView = null;
+        }
+    },
+
+
+    /**
+     * Set current view
+     * @param view {string} component string
+     * @param [cb] {string} callback function name
+     * @param [preserve] {boolean} preserve view
+     */
+    $setView: function $setView(view, cb, preserve) {
+        var sameView = this.$_currentViewRaw === view;
+        if (cb && sameView) {
+            var childCmp = this.$_currentView.children[0];
+            var cbFunc = childCmp[cb];
+            if (typeof cbFunc === 'function') {
+                cbFunc.call(childCmp, this);
+            }
+        } else if (preserve && sameView) {
+            this.$_currentView.children[0].render();
+        } else {
+            this.$removeView();
+            this.$_currentView = this.mount(view);
+        }
+        this.$_currentViewRaw = view;
+    },
+
+
+    /**
+     * Get query url
+     * @param property {string} property name
+     * @returns {*}
+     */
+    $query: function $query(property) {
+        return this.$_query[property];
+    },
+
+
+    /**
+     * Get param url
+     * @param property {string} property name
+     * @returns {*}
+     */
+    $param: function $param(property) {
+        return this.$_param[property];
+    },
+
+    /**
+     * Navigate route
+     * @param path {string} path to navigate
+     * @param [params] {object} optional params
+     */
+    $navigate: function $navigate(path, params) {
+        if (this.props.mode === 'history') {
+            history.pushState(path, null, normalizePath(this.props.root + path));
+            this.$_navigate(path, params);
+        } else {
+            this.$_pauseHashListener = true;
+            window.location.href = this.props.hash + path;
+            this.$_navigate(path, params);
+            this.$_pauseHashListener = false;
+        }
+    },
+
+
+    /**
+     * Navigate route
+     * @param path {string} path to navigate
+     * @param [params] {object} optional params
+     * @returns {boolean}
+     * @private
+     * @ignore
+     */
+    $_navigate: function $_navigate(path, params) {
+        var _this = this;
+
+        var found = false;
+        var hashPath = window.location.hash.slice(this.props.hash.length);
+        var historyPath = window.location.pathname + window.location.search;
+        var fullPath = void 0;
+
+        path = path || hashPath;
+
+        if (this.props.mode === 'history') path = historyPath;
+
+        fullPath = path;
+
+        var pathPart = path.split('?');
+        path = clearPath(pathPart[0]);
+
+        if (this.$_currentFullPath === fullPath) return false;
+
+        this.$_queryRaw = pathPart[1] || '';
+
+        for (var i = 0; i < this.$_routes.length; i++) {
+            var route = this.$_routes[i];
+            var re = new RegExp('^' + route.path + '$');
+            var match = path.match(re);
+
+            if (match) {
+                found = true;
+
+                if ((typeof params === 'undefined' ? 'undefined' : _typeof(params)) === 'object') {
+                    this.$_param = Object.assign({}, params);
+                } else {
+                    (function () {
+                        var param = _this.$_paramMap[route.path];
+                        _this.$_query = queryToObject(_this.$_queryRaw);
+                        match.slice(1).forEach(function (value, i) {
+                            _this.$_param[param[i]] = value;
+                        });
+                    })();
+                }
+
+                this.$_currentPath = path;
+                this.$_currentFullPath = fullPath;
+                this.$setView(route.view, route.cb, route.preserve);
+
+                break;
+            }
+        }
+
+        if (!found) {
+            this.$_currentPath = null;
+            this.$_currentFullPath = null;
+            this.$setView(this.$_routeNotFound || '"' + path + '" not found');
+        }
+
+        this.$activeLink();
+
+        return found;
+    },
+
+
+    /**
+     * Active current link
+     */
+    $activeLink: function $activeLink() {
+        var _this2 = this;
+
+        Object.keys(this.$_link).forEach(function (link) {
+            var checkAlsoQuery = Boolean(_this2.$_link[link].length > 1 && _this2.$_queryRaw);
+
+            _this2.$_link[link].forEach(function (el) {
+                var queryEq = true;
+                if (checkAlsoQuery) queryEq = new RegExp(_this2.$_queryRaw + '$', 'g').test(el.href);
+                if (link === _this2.$_currentPath && queryEq) el.classList.add(_this2.props.classActiveLink);else el.classList.remove(_this2.props.classActiveLink);
+            });
+        });
+    },
+
+
+    /**
+     * Add a new route
+     * @param route {string} route path
+     * @param view {string} component string
+     */
+    $add: function $add(route, view) {
+        if (route === PATH.NOT_FOUND) {
+            this.$_routeNotFound = view;
+        } else {
+            var param = [];
+            var path = clearPath(route);
+            path = path.replace(/:(\w+)/g, function (match, capture) {
+                param.push(capture);
+                return '([\\w-]+)';
+            });
+            this.$_paramMap[path] = param;
+
+            var cbChange = view.match(REGEX.CHANGE);
+            if (cbChange) {
+                cbChange = cbChange[1];
+            }
+
+            var preserve = REGEX.IS_PRESERVE.test(view);
+
+            this.$_routes.push({ path: path, view: view, cb: cbChange, preserve: preserve });
+        }
+    },
+
+
+    /**
+     * Remove a route
+     * @param path {string} route path
+     */
+    $remove: function $remove(path) {
+        for (var i = 0; i < this.$_routes.length; i++) {
+            var route = this.$_routes[i];
+            if (route.path === clearPath(path)) {
+                this.$_routes.splice(i, 1);
+            }
+        }
+    },
+
+
+    /**
+     * Bind all link to routing controller
+     */
+    $bindLink: function $bindLink() {
+        var _this3 = this;
+
+        this.$_link = {};
+        document.querySelectorAll('[' + this.props.linkAttr + ']').forEach(function (el) {
+            var path = el.pathname || el.href;
+
+            if (_this3.props.mode === 'history') {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var _path = path + el.search;
+                    history.pushState(_path, null, normalizePath(_this3.props.root + _path));
+                    _this3.$_navigate(_path);
+                });
+            } else {
+                el.href = _this3.props.hash + path + el.search;
+            }
+            var pathPart = path.split('?');
+            path = clearPath(pathPart[0]);
+            if (typeof _this3.$_link[path] === 'undefined') {
+                _this3.$_link[path] = [el];
+            } else {
+                _this3.$_link[path].push(el);
+            }
+        });
+    },
+    onAppReady: function onAppReady() {
+        var _this4 = this;
+
+        window.removeEventListener('popstate', window[NS.popstate]);
+        window[NS.popstate] = function (e) {
+            _this4.$_navigate(e.state);
+        };
+
+        window.removeEventListener('hashchange', window[NS.hashchange]);
+        window[NS.hashchange] = function () {
+            if (!_this4.$_pauseHashListener) _this4.$_navigate();
+        };
+
+        window.removeEventListener('DOMContentLoaded', window[NS.DOMContentLoaded]);
+        window[NS.DOMContentLoaded] = function () {
+            _this4.$_navigate();
+        };
+
+        this.rawChildren.forEach(function (view) {
+            var route = view.match(REGEX.ROUTE);
+            if (route) {
+                _this4.$add(route[1], view);
+            }
+        });
+
+        this.$bindLink();
+
+        if (this.props.mode === 'history') {
+            window.addEventListener('popstate', window[NS.popstate]);
+        } else {
+            window.addEventListener('hashchange', window[NS.hashchange]);
+        }
+        window.addEventListener('DOMContentLoaded', window[NS.DOMContentLoaded]);
+    },
+    onMountAsync: function onMountAsync() {
+        this.$_navigate();
+    }
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+    REGEX: {
+        ROUTE: /route(?:\s+)?=(?:\s+)?"(.*)"/,
+        CHANGE: /route-change(?:\s+)?=(?:\s+)?"(.*?)"/,
+        IS_PRESERVE: /\spreserve[>\s=]/
+    },
+    PATH: {
+        NOT_FOUND: '*'
+    },
+    NS: {
+        hashchange: '___doz_router___hashchangeListener',
+        popstate: '___doz_router___popstateListener',
+        DOMContentLoaded: '___doz_router___DOMContentLoadedListener'
+    }
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (query) {
+    if (query) return JSON.parse('{"' + query.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) {
+        return key === '' ? value : decodeURIComponent(value);
+    });else return {};
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (path) {
+    return path.toString().replace(/\/+$/, '').replace(/^\//, '');
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (path) {
+    return path.replace(/\/{2,}/g, '/');
+};
+
+/***/ })
+/******/ ]);
+}); 
+},{}],9:[function(require,module,exports) {
+'use strict';
+
+var _doz = require('doz');
+
+(0, _doz.component)('app-nav', {
+    template: function template() {
+        return '\n            <nav>\n                <ul>\n                    <li>\n                        <a router-link href="/">Dashboard</a>\n                    </li>\n                    <li>\n                        <a router-link href="/users">Users</a>\n                    </li>\n                </ul>   \n            </nav>\n        ';
+    }
+});
+},{"doz":5}],11:[function(require,module,exports) {
+'use strict';
+
+var _doz = require('doz');
+
+(0, _doz.component)('app-dashboard', {
+    template: function template() {
+        return '\n            <div>\n                 <h1>Dashboard</h1>\n                 <p>Hello from dashboard page</p>\n            </div>\n        ';
+    }
+});
+},{"doz":5}],13:[function(require,module,exports) {
+'use strict';
+
+var _doz = require('doz');
+
+(0, _doz.component)('app-users', {
+    template: function template() {
+        return '\n            <div>\n                 <h1>Users</h1>\n                 <p>Hello from users page</p>\n            </div>\n        ';
+    }
+});
+},{"doz":5}],3:[function(require,module,exports) {
+'use strict';
+
+var _doz = require('doz');
+
+var _dozRouter = require('doz-router');
+
+var _dozRouter2 = _interopRequireDefault(_dozRouter);
+
+require('./nav');
+
+require('./pages/dashboard');
+
+require('./pages/users');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _doz.component)('doz-router', _dozRouter2.default);
+
+(0, _doz.component)('app-ui', {
+    template: function template() {
+        return '\n            <header>\n                <app-nav></app-nav>\n            </header>\n            <main>\n                <doz-router mode="history" d:id="router">\n                    <app-dashboard route="/"></app-dashboard>\n                    <app-users route="/users"></app-users>\n                </doz-router>\n            </main>\n            <footer>My basic app</footer>\n        ';
+    }
+});
+},{"doz":5,"doz-router":7,"./nav":9,"./pages/dashboard":11,"./pages/users":13}],1:[function(require,module,exports) {
+'use strict';
+
+var _doz = require('doz');
+
+var _doz2 = _interopRequireDefault(_doz);
+
+require('./cmp/ui');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+new _doz2.default({
+    root: '#app',
+    template: '\n        <app-ui></app-ui>\n    '
+});
+},{"doz":5,"./cmp/ui":3}],15:[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+
+var parent = module.bundle.parent;
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = undefined || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49577' + '/');
+  ws.onmessage = function (event) {
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      console.clear();
+
+      data.assets.forEach(function (asset) {
+        hmrApply(global.parcelRequire, asset);
+      });
+
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          hmrAccept(global.parcelRequire, asset.id);
+        }
+      });
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+
+      removeErrorOverlay();
+
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID;
+
+  // html encode message and stack trace
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(+k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAccept(bundle, id) {
+  var modules = bundle.modules;
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAccept(bundle.parent, id);
+  }
+
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+
+  cached = bundle.cache[id];
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAccept(global.parcelRequire, id);
+  });
+}
+},{}]},{},[15,1], null)
 //# sourceMappingURL=bundle.map

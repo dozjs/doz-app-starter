@@ -6,6 +6,7 @@ component('app-users', {
         return `
             <div>
                  <h1>Users</h1>
+                 <p>Hello from users page</p>
             </div>
         `
     }

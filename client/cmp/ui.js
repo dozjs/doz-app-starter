@@ -14,7 +14,7 @@ component('app-ui', {
                 <app-nav></app-nav>
             </header>
             <main>
-                <doz-router>
+                <doz-router mode="history" d:id="router">
                     <app-dashboard route="/"></app-dashboard>
                     <app-users route="/users"></app-users>
                 </doz-router>
