@@ -43,7 +43,7 @@ component('app-logo', {
     },
 
     onDestroy() {
-        setInterval(this.$timer);
+        clearInterval(this.$timer);
     }
 
 });
