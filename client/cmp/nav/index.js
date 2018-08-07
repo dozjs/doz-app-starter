@@ -12,6 +12,9 @@ component('app-nav', {
                     <li>
                         <a router-link href="/users">Users</a>
                     </li>
+                    <li>
+                        <a router-link href="/contact">Contact</a>
+                    </li>
                 </ul>   
             </nav>
         `

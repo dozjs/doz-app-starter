@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+    background-color: #1f0c70;
+    color: #fff;
+    font-family: arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+nav li{
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+    border-right: 1px solid #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+nav li:last-child {
+    border: none;
+}
+
+nav a:link, nav a:visited{
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover{
+    color: lightcyan;
+}
+
+nav a.router-link-active{
+    color: #00bcd4;
+}
+
+h1 {
+    margin: 20px 0;
+    font-weight: lighter;
+}
