@@ -15,8 +15,9 @@ new Doz({
     template() {
         return `
             <header>
-                <img src="dist/${logoUrl}" title="Doz logo">
                 <h3>Welcome to your Doz app!</h3>
+                <img src="dist/${logoUrl}" title="Doz logo">
+                <p>Start to editing client/app.js</p>
                 <app-nav></app-nav>
             </header>
             <main>

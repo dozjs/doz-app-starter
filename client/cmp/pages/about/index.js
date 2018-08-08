@@ -1,6 +1,6 @@
 import {component} from 'doz'
 
-component('app-about', {
+const cfg = {
 
     template() {
         return `
@@ -12,4 +12,8 @@ component('app-about', {
         `
     }
 
-});
+};
+
+component('app-about', cfg);
+
+export default cfg;

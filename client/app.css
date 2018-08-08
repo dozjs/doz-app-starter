@@ -10,6 +10,7 @@ header {
     background-size: 600% 600%;
     animation: AnimationName 8s ease infinite;
     color: #fff;
+    padding-top: 20px;
     padding-bottom: 40px;
 }
 
@@ -31,7 +32,6 @@ header {
 
 header img{
     width: 250px;
-    margin-top: 20px;
 }
 
 nav ul{

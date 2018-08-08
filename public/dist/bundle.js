@@ -3436,33 +3436,57 @@ module.exports = {
 },{"_css_loader":19}],12:[function(require,module,exports) {
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _doz = require('doz');
 
-(0, _doz.component)('app-nav', {
+var cfg = {
     template: function template() {
         return '\n            <nav>\n                <ul>\n                    <li>\n                        <a router-link href="/">Home</a>\n                    </li>\n                    <li>\n                        <a router-link href="/about">About</a>\n                    </li>\n                </ul>   \n            </nav>\n        ';
     }
-});
+};
+
+(0, _doz.component)('app-nav', cfg);
+
+exports.default = cfg;
 },{"doz":8}],14:[function(require,module,exports) {
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _doz = require('doz');
 
-(0, _doz.component)('app-home', {
+var cfg = {
     template: function template() {
         return '\n            <div>\n                 <h1>Home</h1>\n                 <p>For guide to Doz please read the simple documentation <a target="_blank" href="https://github.com/dozjs/doz/blob/master/documentation/index.md">here</a></p>\n                 <p>How does routing work? look <a target="_blank" href="https://github.com/dozjs-cmp/doz-router/">here</a></p>\n            </div>\n        ';
     }
-});
+};
+
+(0, _doz.component)('app-home', cfg);
+
+exports.default = cfg;
 },{"doz":8}],16:[function(require,module,exports) {
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _doz = require('doz');
 
-(0, _doz.component)('app-about', {
+var cfg = {
     template: function template() {
         return '\n            <div>\n                 <h1>About</h1>\n                 <p>Doz was created to speed up the development of web applications<br/>with a simple and linear syntax \n                 almost like writing in VanillaJS.</p>\n            </div>\n        ';
     }
-});
+};
+
+(0, _doz.component)('app-about', cfg);
+
+exports.default = cfg;
 },{"doz":8}],1:[function(require,module,exports) {
 'use strict';
 
@@ -3495,7 +3519,7 @@ new _doz2.default({
     root: '#app',
 
     template: function template() {
-        return '\n            <header>\n                <img src="dist/' + _logo2.default + '" title="Doz logo">\n                <h3>Welcome to your Doz app!</h3>\n                <app-nav></app-nav>\n            </header>\n            <main>\n                <doz-router mode="history" d:id="router">\n                    <app-home route="/"></app-home>\n                    <app-about route="/about"></app-about>\n                </doz-router>\n            </main>\n        ';
+        return '\n            <header>\n                <h3>Welcome to your Doz app!</h3>\n                <img src="dist/' + _logo2.default + '" title="Doz logo">\n                <p>Start to editing client/app.js</p>\n                <app-nav></app-nav>\n            </header>\n            <main>\n                <doz-router mode="history" d:id="router">\n                    <app-home route="/"></app-home>\n                    <app-about route="/about"></app-about>\n                </doz-router>\n            </main>\n        ';
     }
 });
 },{"doz":8,"doz-router":10,"./logo.svg":3,"./app.css":5,"./cmp/nav":12,"./cmp/pages/home":14,"./cmp/pages/about":16}],21:[function(require,module,exports) {
@@ -3527,7 +3551,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = undefined || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60115' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58982' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

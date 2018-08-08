@@ -1,6 +1,6 @@
 import {component} from 'doz'
 
-component('app-nav', {
+const cfg = {
 
     template() {
         return `
@@ -17,4 +17,8 @@ component('app-nav', {
         `
     }
 
-});
+};
+
+component('app-nav', cfg);
+
+export default cfg;
