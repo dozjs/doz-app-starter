@@ -1,14 +1,33 @@
 html, body {
     height: 100%;
-    background-color: #1f0c70;
-    color: #fff;
     font-family: arial, sans-serif;
     margin: 0;
     text-align: center;
 }
 
-nav {
-    margin-bottom: 60px;
+header {
+    background: linear-gradient(128deg, #1f0c70, #6c609e, #000f3c);
+    background-size: 600% 600%;
+    -webkit-animation: app_AnimationName_Hbg6N 8s ease infinite;
+            animation: app_AnimationName_Hbg6N 8s ease infinite;
+    color: #fff;
+    padding-bottom: 40px;
+}
+
+@-webkit-keyframes app_AnimationName_Hbg6N {
+    0%{background-position:0 11%}
+    50%{background-position:100% 90%}
+    100%{background-position:0 11%}
+}
+@keyframes app_AnimationName_Hbg6N {
+    0%{background-position:0 11%}
+    50%{background-position:100% 90%}
+    100%{background-position:0 11%}
+}
+
+header img{
+    width: 250px;
+    margin-top: 20px;
 }
 
 nav ul{
@@ -40,10 +59,23 @@ nav a:hover{
 }
 
 nav a.router-link-active{
-    color: #00bcd4;
+    border-bottom: 2px solid #00BCD4;
+    padding-bottom: 5px;
+}
+
+main {
+    padding: 40px;
 }
 
 h1 {
-    margin: 40px 0;
     font-weight: lighter;
+    margin: 20px 0;
+}
+
+h3 {
+    margin: 20px 0;
+}
+
+p {
+    line-height: 1.5;
 }

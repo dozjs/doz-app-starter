@@ -7,13 +7,10 @@ component('app-nav', {
             <nav>
                 <ul>
                     <li>
-                        <a router-link href="/">Dashboard</a>
+                        <a router-link href="/">Home</a>
                     </li>
                     <li>
-                        <a router-link href="/users">Users</a>
-                    </li>
-                    <li>
-                        <a router-link href="/contact">Contact</a>
+                        <a router-link href="/about">About</a>
                     </li>
                 </ul>   
             </nav>
