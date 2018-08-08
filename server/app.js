@@ -16,7 +16,7 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-if(process.env.NODE_ENV === 'production')
+if(process.env.NODE_ENV !== 'development')
     app.listen(80);
 
 module.exports = app;
