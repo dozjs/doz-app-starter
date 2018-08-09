@@ -103,7 +103,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({8:[function(require,module,exports) {
+})({10:[function(require,module,exports) {
 var define;
 // [DOZ]  Build version: 1.4.3  
  (function webpackUniversalModuleDefinition(root, factory) {
@@ -2895,7 +2895,7 @@ module.exports = component;
 /***/ })
 /******/ ]);
 }); 
-},{}],10:[function(require,module,exports) {
+},{}],8:[function(require,module,exports) {
 var define;
 // [DOZ-ROUTER]  Build version: 0.1.4  
  (function webpackUniversalModuleDefinition(root, factory) {
@@ -3451,7 +3451,7 @@ var cfg = {
 (0, _doz.component)('app-nav', cfg);
 
 exports.default = cfg;
-},{"doz":8}],14:[function(require,module,exports) {
+},{"doz":10}],14:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3469,7 +3469,7 @@ var cfg = {
 (0, _doz.component)('app-home', cfg);
 
 exports.default = cfg;
-},{"doz":8}],16:[function(require,module,exports) {
+},{"doz":10}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3487,7 +3487,7 @@ var cfg = {
 (0, _doz.component)('app-about', cfg);
 
 exports.default = cfg;
-},{"doz":8}],1:[function(require,module,exports) {
+},{"doz":10}],1:[function(require,module,exports) {
 'use strict';
 
 var _doz = require('doz');
@@ -3522,7 +3522,7 @@ new _doz2.default({
         return '\n            <header>\n                <h3>Welcome to your Doz app!</h3>\n                <img src="dist/' + _logo2.default + '" title="Doz logo">\n                <p>Start to editing client/app.js</p>\n                <app-nav></app-nav>\n            </header>\n            <main>\n                <doz-router mode="history" d:id="router">\n                    <app-home route="/"></app-home>\n                    <app-about route="/about"></app-about>\n                </doz-router>\n            </main>\n        ';
     }
 });
-},{"doz":8,"doz-router":10,"./logo.svg":3,"./app.css":5,"./cmp/nav":12,"./cmp/pages/home":14,"./cmp/pages/about":16}],21:[function(require,module,exports) {
+},{"doz":10,"doz-router":8,"./logo.svg":3,"./app.css":5,"./cmp/nav":12,"./cmp/pages/home":14,"./cmp/pages/about":16}],21:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -3549,9 +3549,9 @@ module.bundle.Module = Module;
 
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = undefined || location.hostname;
+  var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58982' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50147' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

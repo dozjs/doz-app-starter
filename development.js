@@ -17,8 +17,13 @@ const file = path.join(__dirname, './client/app.js');
 
 const bundler = new Bundler(file, options);
 
+console.log('> Starting develop server...');
+console.log('');
 server.listen(3000, async ()=> {
+    const url = 'http://localhost:3000';
     await bundler.bundle();
-    opn('http://localhost:3000');
+    console.log('\n');
+    console.log('> Server listen', url);
+    opn(url);
 });
 
