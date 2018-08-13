@@ -19,7 +19,7 @@ $ npm install
     - run script `server`
 - Testing:
     - run script `test`
-- Publish on NPM, you can run scripts below (automatically build for production)
+- Increase version number and push to GIT (automatically build for production)
     - `release:major` (publish a major)
     - `release:minor` (publish a minor)
     - `release:patch` (publish a patch)
