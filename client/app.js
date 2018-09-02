@@ -1,12 +1,10 @@
 import Doz from 'doz'
-import DozRouter from 'doz-router'
+import 'doz-router'
 import logoUrl from './logo.svg'
 import './app.css'
 import './cmp/nav'
 import './cmp/pages/home'
 import './cmp/pages/about'
-
-Doz.component('doz-router', DozRouter);
 
 new Doz({
 

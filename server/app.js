@@ -14,7 +14,7 @@ router.get('*', async ctx => {
 });
 
 app
-    .use(serve('./public/'))
+    .use(serve('./public/', {index: false}))
     .use(body())
     .use(router.routes())
     .use(router.allowedMethods());
