@@ -5,9 +5,12 @@ const body = require('koa-body');
 const app = new Koa();
 const router = new Router();
 const fs = require('fs');
+const DozSSR = require('doz-ssr');
 
-router.get('*', ctx => {
-    ctx.body = fs.readFileSync('./public/index.html').toString();
+const dozSSR = new DozSSR('./public/index.html');
+
+router.get('*', async ctx => {
+    ctx.body = await dozSSR.render(ctx.path);
 });
 
 app
