@@ -6,8 +6,8 @@ const app = new Koa();
 const router = new Router();
 const DozSSR = require('doz-ssr');
 
-function startSSR () {
-    app.context.dozSSR = new DozSSR('./public/index.html');
+function createSSR () {
+    app.context.dozSSR = new DozSSR('./dist/index.html');
 }
 
 router.get('*', async ctx => {
@@ -15,16 +15,16 @@ router.get('*', async ctx => {
 });
 
 app
-    .use(serve('./public/', {index: false}))
+    .use(serve('./dist/', {index: false}))
     .use(body())
     .use(router.routes())
     .use(router.allowedMethods());
 
 if(process.env.NODE_ENV !== 'development') {
-    app.listen(80, startSSR);
+    app.listen(80, createSSR);
 }
 
 module.exports = {
     app,
-    startSSR
+    createSSR
 };

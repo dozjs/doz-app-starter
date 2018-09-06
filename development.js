@@ -8,11 +8,10 @@ const {app, startSSR} = require('./server/app');
 const options = {
     watch: true,
     cache: false,
-    outDir: 'public',
     publicUrl: './'
 };
 
-const file = path.join(__dirname, './assets/index.html');
+const file = path.join(__dirname, './public/index.html');
 
 const bundler = new Bundler(file, options);
 
@@ -26,7 +25,7 @@ app.listen(3000, async ()=> {
     await bundler.bundle();
 
     // Start server-side rendering
-    startSSR();
+    createSSR();
 
     console.log('\n');
     console.log('> Server listen', url);
