@@ -4,7 +4,6 @@ const serve = require('koa-static');
 const body = require('koa-body');
 const app = new Koa();
 const router = new Router();
-const fs = require('fs');
 const DozSSR = require('doz-ssr');
 
 const dozSSR = new DozSSR('./public/index.html');
