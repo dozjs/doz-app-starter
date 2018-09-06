@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node development.js",
-    "build": "parcel build client/app.js --out-file bundle.js --no-cache --out-dir public/dist --public-url ./",
+    "build": "parcel build assets/index.html --no-cache --out-dir public --public-url ./",
     "test": "mocha --require ignore-styles --require babel-register \"./{,!(node_modules)/**}/*.test.js\"",
     "server": "node server/app.js",
     "release:major": "npm version major",

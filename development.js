@@ -8,12 +8,11 @@ const {app, startSSR} = require('./server/app');
 const options = {
     watch: true,
     cache: false,
-    outDir: 'public/dist',
-    outFile: 'bundle.js',
+    outDir: 'public',
     publicUrl: './'
 };
 
-const file = path.join(__dirname, './client/app.js');
+const file = path.join(__dirname, './assets/index.html');
 
 const bundler = new Bundler(file, options);
 
