@@ -6,9 +6,9 @@ const app = new Koa();
 const router = new Router();
 const DozSSR = require('doz-ssr');
 
-app.startSSR = function () {
+function startSSR () {
     app.context.dozSSR = new DozSSR('./public/index.html');
-};
+}
 
 router.get('*', async ctx => {
     ctx.body = await ctx.dozSSR.render(ctx.path);
@@ -21,7 +21,10 @@ app
     .use(router.allowedMethods());
 
 if(process.env.NODE_ENV !== 'development') {
-    app.listen(80, app.startSSR);
+    app.listen(80, startSSR);
 }
 
-module.exports = app;
+module.exports = {
+    app,
+    startSSR
+};
