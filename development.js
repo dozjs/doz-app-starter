@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'development';
 const Bundler = require('parcel-bundler');
 const path = require('path');
 const opn = require('opn');
-const {app, startSSR} = require('./server/app');
+const app = require('./server/app');
 
 const options = {
     watch: true,
@@ -23,9 +23,6 @@ app.listen(3000, async ()=> {
 
     // Start builder
     await bundler.bundle();
-
-    // Start server-side rendering
-    createSSR();
 
     console.log('\n');
     console.log('> Server listen', url);
