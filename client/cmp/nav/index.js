@@ -2,8 +2,8 @@ import {component} from 'doz'
 
 const cfg = {
 
-    template() {
-        return `
+    template(h) {
+        return h`
             <nav>
                 <ul>
                     <li>

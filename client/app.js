@@ -10,8 +10,8 @@ new Doz({
 
     root: '#app',
 
-    template() {
-        return `
+    template(h) {
+        return h`
             <header>
                 <h3>Welcome to your Doz app!</h3>
                 <img src="${logoUrl}" title="Doz logo">

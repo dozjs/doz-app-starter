@@ -2,8 +2,8 @@ import {component} from 'doz'
 
 const cfg = {
 
-    template() {
-        return `
+    template(h) {
+        return h`
             <div>
                  <h1>About</h1>
                  <p>Doz was created to speed up the development of web applications<br/>with a simple and linear syntax 
