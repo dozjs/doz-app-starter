@@ -10,6 +10,13 @@ const cfg = {
                  almost like writing in VanillaJS.</p>
             </div>
         `
+    },
+
+    onMount() {
+        this.metaTag({
+            title: 'About',
+            description: 'My About Page'
+        });
     }
 
 };

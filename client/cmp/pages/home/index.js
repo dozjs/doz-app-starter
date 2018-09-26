@@ -10,6 +10,13 @@ const cfg = {
                  <p>How does routing work? look <a target="_blank" href="https://github.com/dozjs-cmp/doz-router/">here</a></p>
             </div>
         `
+    },
+
+    onMount() {
+        this.metaTag({
+            title: 'Home',
+            description: 'My Home Page'
+        });
     }
 
 };

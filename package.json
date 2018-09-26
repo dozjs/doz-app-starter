@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "doz": "^1.6.1",
+    "doz-metatag": "^1.0.0",
     "doz-router": "^1.2.0",
     "doz-ssr": "^1.0.0",
     "koa": "^2.5.2",
