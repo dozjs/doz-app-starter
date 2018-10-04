@@ -7,10 +7,10 @@ const cfg = {
             <nav>
                 <ul>
                     <li>
-                        <a router-link href="/">Home</a>
+                        <a data-router-link href="/">Home</a>
                     </li>
                     <li>
-                        <a router-link href="/about">About</a>
+                        <a data-router-link href="/about">About</a>
                     </li>
                 </ul>   
             </nav>
