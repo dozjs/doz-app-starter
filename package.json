@@ -14,7 +14,7 @@
     "postversion": "git push --follow-tags"
   },
   "dependencies": {
-    "doz": "^1.6.5",
+    "doz": "^1.6.6",
     "doz-metatag": "^1.0.0",
     "doz-router": "^1.2.3",
     "doz-ssr": "^1.0.0",
