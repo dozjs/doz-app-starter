@@ -7,8 +7,7 @@ const app = require('./server/app');
 
 const options = {
     watch: true,
-    cache: false,
-    publicUrl: './'
+    cache: false
 };
 
 const file = path.join(__dirname, './public/index.html');
