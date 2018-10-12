@@ -11,7 +11,7 @@ Install dependencies
 $ npm install
 ```
 
-#### This project includes follows modules: ####
+#### This project includes following modules: ####
 
 - Front-end
     - [doz](https://github.com/dozjs/doz/)
