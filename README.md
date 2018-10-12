@@ -11,6 +11,17 @@ Install dependencies
 $ npm install
 ```
 
+#### This project includes follows modules: ####
+
+- [doz](https://github.com/dozjs/doz/)
+- [doz-metatag](https://github.com/dozjs/doz-metatag)
+- [doz-router](https://github.com/dozjs-cmp/doz-router)
+- [doz-ssr](https://github.com/dozjs/doz-ssr)
+- [koa](https://github.com/koajs/koa)
+- [koa-body](https://github.com/dlau/koa-body)
+- [koa-router](https://github.com/alexmingoia/koa-router)
+- [koa-static](https://github.com/koajs/static)
+
 ## Scripts
 - Development:
     - run script `start`
