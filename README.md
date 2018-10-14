@@ -11,7 +11,7 @@ Install dependencies
 $ npm install
 ```
 
-#### This project includes following modules: ####
+#### This project includes following modules:
 
 - Front-end
     - [doz](https://github.com/dozjs/doz/)
@@ -19,6 +19,7 @@ $ npm install
     - [doz-router](https://github.com/dozjs-cmp/doz-router)
 - Back-end
     - [doz-ssr](https://github.com/dozjs/doz-ssr)
+    - [doz-snap](https://github.com/dozjs/doz-snap)
     - [koa](https://github.com/koajs/koa)
     - [koa-body](https://github.com/dlau/koa-body)
     - [koa-router](https://github.com/alexmingoia/koa-router)
@@ -26,12 +27,15 @@ $ npm install
 
 ## Scripts
 - Development:
-    - run script `start`
+    - `start`
 - Production:
-    - run script `build`
-    - run script `server`
+    - `build`
+    - `server`
+    - **Pre-rendering**
+        - `snap`
+
 - Testing:
-    - run script `test`
+    - `test`
 - Increase version number and push to GIT (automatically build for production)
     - `release:major` (publish a major)
     - `release:minor` (publish a minor)

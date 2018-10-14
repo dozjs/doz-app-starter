@@ -1,11 +1,14 @@
 import Doz from 'doz'
 import metaTag from 'doz-metatag'
+import snap from 'doz-snap/plugin'
 import 'doz-router'
 import logoUrl from './logo.svg'
 import './app.css'
 import './cmp/nav'
 import './cmp/pages/home'
 import './cmp/pages/about'
+
+Doz.use(snap);
 
 Doz.use(metaTag, {
     title: 'My Doz App',

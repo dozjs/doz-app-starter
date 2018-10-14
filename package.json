@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node development.js",
     "build": "parcel build public/index.html --no-cache",
+    "snap": "doz-snap -f dist/index.html",
     "test": "mocha --require ignore-styles --require babel-register \"./{,!(node_modules)/**}/*.test.js\"",
     "server": "node server/app.js",
     "release:major": "npm version major",
@@ -29,6 +30,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "doz-snap": "^1.0.0",
     "ignore-styles": "^5.0.1",
     "jsdom": "^11.12.0",
     "jsdom-global": "^3.0.2",
