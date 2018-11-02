@@ -1,5 +1,5 @@
 # doz-app-starter
-Boilerplate to creating DOZ app
+Boilerplate to creating Doz app
 
 ## Install
 ```
