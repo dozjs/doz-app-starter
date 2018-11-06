@@ -1,4 +1,5 @@
 import Doz from 'doz'
+import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
 import snap from 'doz-snap/plugin'
 import 'doz-router'
@@ -7,6 +8,8 @@ import './app.css'
 import './cmp/nav'
 import './cmp/pages/home'
 import './cmp/pages/about'
+
+hotLocationReload(module);
 
 Doz.use(snap);
 

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "doz": "^1.7.1",
+    "doz-hot-location-reload": "^1.0.0",
     "doz-metatag": "^1.0.0",
     "doz-router": "^1.4.2",
     "doz-ssr": "^1.0.0",
