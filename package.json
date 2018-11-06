@@ -19,7 +19,7 @@
     "doz-hot-location-reload": "^1.0.0",
     "doz-metatag": "^1.0.0",
     "doz-router": "^1.4.2",
-    "doz-ssr": "^1.0.0",
+    "doz-ssr": "^1.0.2",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
     "koa-router": "^7.4.0",
