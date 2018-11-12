@@ -1,24 +1,28 @@
-process.env.NODE_ENV = 'development';
-
+const nodemon = require('nodemon');
 const Bundler = require('parcel-bundler');
 const path = require('path');
 const opn = require('opn');
-const app = require('./server/app');
+const port = require('./package').nodemonConfig.env.PORT;
 
 const options = {
     watch: true,
     cache: false
 };
 
-const file = path.join(__dirname, './public/index.html');
+nodemon({
+    script: 'server/app.js'
+}).once('start', async function () {
 
-const bundler = new Bundler(file, options);
+    console.log('> Hoping the server is started :D');
 
-console.log('> Starting develop server...');
-console.log('');
+    const file = path.join(__dirname, './public/index.html');
 
-app.listen(3000, async ()=> {
-    const url = 'http://localhost:3000';
+    const bundler = new Bundler(file, options);
+
+    console.log('> Starting develop server...');
+    console.log('');
+
+    const url = 'http://localhost:' + port;
 
     // Start builder
     await bundler.bundle();
@@ -28,5 +32,7 @@ app.listen(3000, async ()=> {
 
     //Open app in browser
     opn(url);
-});
 
+}).on('restart', function () {
+    console.log('> Server restarting...');
+});

@@ -23,7 +23,11 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-if(!isDevelop) {
+if (isDevelop) {
+    app.listen(process.env.PORT, ()=>{
+        console.log('> Server started in develop mode.')
+    });
+} else {
     app.listen(80, createSSR);
 }
 
