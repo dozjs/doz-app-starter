@@ -4,6 +4,8 @@ const path = require('path');
 const opn = require('opn');
 const port = require('./package').nodemonConfig.env.PORT;
 
+const url = 'http://localhost:' + port;
+
 const options = {
     watch: true,
     cache: false
@@ -13,16 +15,12 @@ nodemon({
     script: 'server/app.js'
 }).once('start', async function () {
 
-    console.log('> Hoping the server is started :D');
-
     const file = path.join(__dirname, './public/index.html');
 
     const bundler = new Bundler(file, options);
 
     console.log('> Starting develop server...');
     console.log('');
-
-    const url = 'http://localhost:' + port;
 
     // Start builder
     await bundler.bundle();
