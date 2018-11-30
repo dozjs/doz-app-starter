@@ -25,7 +25,9 @@ app
 
 if (isDevelop) {
     app.listen(process.env.PORT, ()=>{
-        console.log('> Server started in develop mode.')
+        console.log('\n');
+        console.log('> Server started in develop mode.');
+        console.log('');
     });
 } else {
     app.listen(80, createSSR);
