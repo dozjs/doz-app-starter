@@ -1,6 +1,10 @@
-import {component} from 'doz'
+import {define, Component} from 'doz'
 
-const cfg = {
+define('app-home', class extends Component {
+
+    constructor(o) {
+        super(o);
+    }
 
     template(h) {
         return h`
@@ -10,7 +14,7 @@ const cfg = {
                  <p>How does routing work? look <a target="_blank" href="https://github.com/dozjs-cmp/doz-router/">here</a></p>
             </div>
         `
-    },
+    }
 
     onMount() {
         this.metaTag({
@@ -19,8 +23,4 @@ const cfg = {
         });
     }
 
-};
-
-component('app-home', cfg);
-
-export default cfg;
+});

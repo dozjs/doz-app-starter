@@ -1,6 +1,10 @@
-import {component} from 'doz'
+import {define, Component} from 'doz'
 
-const cfg = {
+define('app-nav', class extends Component {
+
+    constructor(o) {
+        super(o);
+    }
 
     template(h) {
         return h`
@@ -52,8 +56,4 @@ const cfg = {
         `
     }
 
-};
-
-component('app-nav', cfg);
-
-export default cfg;
+});

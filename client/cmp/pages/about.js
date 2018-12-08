@@ -1,6 +1,10 @@
-import {component} from 'doz'
+import {define, Component} from 'doz'
 
-const cfg = {
+define('app-about', class extends Component {
+
+    constructor(o) {
+        super(o);
+    }
 
     template(h) {
         return h`
@@ -10,7 +14,7 @@ const cfg = {
                  almost like writing in VanillaJS.</p>
             </div>
         `
-    },
+    }
 
     onMount() {
         this.metaTag({
@@ -19,8 +23,4 @@ const cfg = {
         });
     }
 
-};
-
-component('app-about', cfg);
-
-export default cfg;
+});
