@@ -2,9 +2,9 @@ import {define, Component} from 'doz'
 
 define('app-about', class extends Component {
 
-    constructor(o) {
-        super(o);
-    }
+    props = {
+        title: 'ciao'
+    };
 
     template(h) {
         return h`
