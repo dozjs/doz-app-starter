@@ -17,6 +17,7 @@ define('app-about', class extends Component {
     }
 
     onMount() {
+        console.log(this.props);
         this.metaTag({
             title: 'About',
             description: 'My About Page'
