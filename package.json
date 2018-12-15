@@ -29,7 +29,7 @@
     "@babel/register": "^7.0.0",
     "autoprefixer": "^9.1.0",
     "chai": "^4.1.2",
-    "doz": "^1.10.0",
+    "doz": "^1.11.0",
     "doz-hot-location-reload": "^1.0.1",
     "doz-metatag": "^1.0.0",
     "doz-router": "^1.4.3",
@@ -48,7 +48,12 @@
       "@babel/preset-env"
     ],
     "plugins": [
-      ["@babel/plugin-proposal-class-properties", { "loose": true }]
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
     ]
   },
   "nodemonConfig": {
