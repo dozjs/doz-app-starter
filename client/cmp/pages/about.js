@@ -2,10 +2,6 @@ import {define, Component} from 'doz'
 
 define('app-about', class extends Component {
 
-    constructor(o) {
-        super(o);
-    }
-
     template(h) {
         return h`
             <div>
