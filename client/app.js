@@ -2,6 +2,7 @@ import Doz from 'doz'
 import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
 import snap from 'doz-snap/plugin'
+import isSSR from 'doz-ssr/plugin'
 import 'doz-router'
 import logoUrl from './logo.svg'
 import './app.css'
@@ -12,6 +13,7 @@ import './cmp/pages/about'
 hotLocationReload(module);
 
 Doz.use(snap);
+Doz.use(isSSR);
 
 Doz.use(metaTag, {
     title: 'My Doz App',
