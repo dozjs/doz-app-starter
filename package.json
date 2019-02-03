@@ -28,7 +28,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
-    "doz": "^1.12.1",
+    "doz": "^1.13.0",
     "doz-hot-location-reload": "^1.0.1",
     "doz-metatag": "^1.0.0",
     "doz-router": "^1.4.3",
