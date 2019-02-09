@@ -47,6 +47,9 @@
       "env"
     ]
   },
+  "browserslist": [
+    "last 1 chrome version"
+  ],
   "nodemonConfig": {
     "ignore": [
       "dist/*",
