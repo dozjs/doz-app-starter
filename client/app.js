@@ -30,12 +30,12 @@ new Doz({
                 <h3>Welcome to your Doz app!</h3>
                 <img src="${logoUrl}" title="Doz logo">
                 <p>Start to editing client/app.js</p>
-                <app-nav></app-nav>
+                <app-nav/>
             </header>
             <main>
                 <doz-router mode="history" d:id="router">
-                    <app-home route="/"></app-home>
-                    <app-about route="/about"></app-about>
+                    <app-home route="/"/>
+                    <app-about route="/about"/>
                 </doz-router>
             </main>
         `

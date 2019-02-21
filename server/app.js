@@ -30,7 +30,7 @@ if (isDevelop) {
         console.log('');
     });
 } else {
-    app.listen(80, createSSR);
+    app.listen(8082, createSSR);
 }
 
 module.exports = app;
