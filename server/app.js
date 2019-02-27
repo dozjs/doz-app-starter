@@ -14,7 +14,7 @@ function createSSR () {
 
 router.get('*', async ctx => {
     if (isDevelop) createSSR();
-    ctx.body = await dozSSR.render(ctx.path, isDevelop);
+    ctx.body = await dozSSR.render(ctx.path, isDevelop, ctx.protocol + '://' + ctx.host);
 });
 
 app
@@ -30,7 +30,7 @@ if (isDevelop) {
         console.log('');
     });
 } else {
-    app.listen(8082, createSSR);
+    app.listen(80, createSSR);
 }
 
 module.exports = app;

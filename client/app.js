@@ -33,7 +33,7 @@ new Doz({
                 <app-nav/>
             </header>
             <main>
-                <doz-router mode="history" d:id="router">
+                <doz-router mode="history">
                     <app-home route="/"/>
                     <app-about route="/about"/>
                 </doz-router>
