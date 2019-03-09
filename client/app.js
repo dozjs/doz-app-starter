@@ -6,13 +6,18 @@ import isSSR from 'doz-ssr/plugin'
 import 'doz-router'
 import logoUrl from './logo.svg'
 import './app.css'
-import './cmp/nav'
-import './cmp/pages/home'
-import './cmp/pages/about'
+import './cmp/app-nav'
+import './cmp/pages/page-home'
+import './cmp/pages/page-about'
 
+// This causes the page to reload in the browser
+// when there are changes during the development phase
 hotLocationReload(module);
 
+// Plugin used during Pre-rendering
 Doz.use(snap);
+
+// Plugin used during Server Side Rendering
 Doz.use(isSSR);
 
 Doz.use(metaTag, {
@@ -34,11 +39,21 @@ new Doz({
             </header>
             <main>
                 <doz-router mode="history">
-                    <app-home route="/"/>
-                    <app-about route="/about"/>
+                    <page-home route="/"/>
+                    <page-about route="/about"/>
                 </doz-router>
             </main>
         `
-    }
+    },
+
+    onCreate() {
+        // Every time a component is mounted on the DOM,
+        // I update the list of links mapped with the "data-router-link" attribute
+        this.app.on('componentMount', () => {
+            if (this.router) {
+                this.router.bindLink();
+            }
+        });
+    },
 
 });

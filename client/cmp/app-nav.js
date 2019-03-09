@@ -1,5 +1,7 @@
 import {define} from 'doz'
 
+// This component is make with SFC pattern,
+// more info: https://github.com/dozjs/doz/blob/master/documentation/index.md#sfc-single-function-component
 define('app-nav', function (h) {
     return h`
         <style> 

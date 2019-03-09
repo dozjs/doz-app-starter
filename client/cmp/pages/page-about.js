@@ -1,6 +1,6 @@
 import {define, Component} from 'doz'
 
-define('app-about', class extends Component {
+define('page-about', class extends Component {
 
     template(h) {
         return h`
