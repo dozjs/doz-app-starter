@@ -30,7 +30,7 @@
     "chai": "^4.1.2",
     "doz": "^1.16.2",
     "doz-hot-location-reload": "^1.0.1",
-    "doz-metatag": "^1.0.0",
+    "doz-metatag": "^1.1.1",
     "doz-router": "^1.5.0",
     "doz-snap": "^1.0.0",
     "ignore-styles": "^5.0.1",
