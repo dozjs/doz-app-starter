@@ -2,7 +2,7 @@ const nodemon = require('nodemon');
 const Bundler = require('parcel-bundler');
 const path = require('path');
 const opn = require('opn');
-const port = require('./package').nodemonConfig.env.PORT;
+const port = require('../package').nodemonConfig.env.PORT;
 
 const url = 'http://localhost:' + port;
 
@@ -15,7 +15,7 @@ nodemon({
     script: 'server/app.js'
 }).once('start', async function () {
 
-    const file = path.join(__dirname, './public/index.html');
+    const file = path.join(__dirname, '../public/index.html');
 
     const bundler = new Bundler(file, options);
 
