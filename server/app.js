@@ -14,7 +14,13 @@ function createSSR () {
 
 router.get('*', async ctx => {
     if (isDevelop) createSSR();
-    ctx.body = await dozSSR.render(ctx.path, isDevelop, ctx.protocol + '://' + ctx.host);
+
+    let [content] = await dozSSR.render(ctx.path, {
+        reloadBundle: isDevelop,
+        baseUrl: ctx.protocol + '://' + ctx.host
+    });
+
+    ctx.body = content;
 });
 
 app

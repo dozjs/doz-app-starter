@@ -64,4 +64,9 @@ new Doz({
         });
     },
 
+    onMountAsync() {
+        if (window.SSR)
+            window.SSR.ready();
+    }
+
 });
