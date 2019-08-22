@@ -1,7 +1,6 @@
 import Doz from 'doz'
 import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
-import snap from 'doz-snap/plugin'
 import isSSR from 'doz-ssr/plugin'
 import CONFIG from './config'
 import logoUrl from './logo.svg'
@@ -14,9 +13,6 @@ import './cmp/pages/page-about'
 // This causes the page to reload in the browser
 // when there are changes during the development phase
 hotLocationReload(module);
-
-// Plugin used during Pre-rendering
-Doz.use(snap);
 
 // Plugin used during Server Side Rendering
 Doz.use(isSSR);
