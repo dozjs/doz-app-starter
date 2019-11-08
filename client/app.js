@@ -4,7 +4,7 @@ import metaTag from 'doz-metatag'
 import isSSR from 'doz-ssr/plugin'
 import CONFIG from './config'
 import logoUrl from './logo.svg'
-import 'doz-router'
+import DozRouter from 'doz-router'
 import './app.css'
 import Nav from './cmp/nav'
 import PageHome from './cmp/pages/home'
@@ -42,10 +42,10 @@ new Doz({
                 <${Nav}/>
             </header>
             <main>
-                <doz-router mode="history">
+                <${DozRouter} mode="history">
                     <${PageHome} route="/"/>
                     <${PageAbout} route="/about"/>
-                </doz-router>
+                </${DozRouter}>
             </main>
         `
     },
