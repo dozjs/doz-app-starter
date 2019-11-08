@@ -1,6 +1,6 @@
-import {define, Component} from 'doz'
+import {Component} from 'doz'
 
-define('page-about', class extends Component {
+export default class extends Component {
 
     template(h) {
         return h`
@@ -19,4 +19,4 @@ define('page-about', class extends Component {
         });
     }
 
-});
+}

@@ -6,9 +6,9 @@ import CONFIG from './config'
 import logoUrl from './logo.svg'
 import 'doz-router'
 import './app.css'
-import './cmp/app-nav'
-import './cmp/pages/page-home'
-import './cmp/pages/page-about'
+import Nav from './cmp/nav'
+import PageHome from './cmp/pages/home'
+import PageAbout from './cmp/pages/about'
 
 // This causes the page to reload in the browser
 // when there are changes during the development phase
@@ -39,12 +39,12 @@ new Doz({
                 <h3>Welcome to your Doz app!</h3>
                 <img src="${logoUrl}" title="Doz logo">
                 <p>Start to editing client/app.js</p>
-                <app-nav/>
+                <${Nav}/>
             </header>
             <main>
                 <doz-router mode="history">
-                    <page-home route="/"/>
-                    <page-about route="/about"/>
+                    <${PageHome} route="/"/>
+                    <${PageAbout} route="/about"/>
                 </doz-router>
             </main>
         `
