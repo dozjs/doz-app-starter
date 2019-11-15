@@ -1,3 +1,6 @@
+import {tag} from 'doz'
+
+@tag('my-nav')
 export default function (h) {
     return h`
         <style> 

@@ -1,7 +1,7 @@
-import {Component} from 'doz'
+import {Component, tag} from 'doz'
 
+@tag('page-home')
 export default class extends Component {
-
     template(h) {
         return h`
             <div>
@@ -19,5 +19,4 @@ export default class extends Component {
             description: 'My Home Page'
         });
     }
-
 }

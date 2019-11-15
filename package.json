@@ -23,13 +23,15 @@
   },
   "devDependencies": {
     "@abide-community/parcel-plugin-clean-out-dir": "^1.0.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-decorators": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
     "autoprefixer": "^9.1.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "caniuse-lite": "^1.0.30001010",
     "chai": "^4.1.2",
-    "doz-hot-location-reload": "latest",
     "doz": "latest",
+    "doz-hot-location-reload": "latest",
     "doz-metatag": "latest",
     "doz-router": "latest",
     "doz-snap": "latest",
@@ -44,12 +46,17 @@
   },
   "babel": {
     "presets": [
-      "env"
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
     ]
   },
-  "browserslist": [
-    "last 1 chrome version"
-  ],
   "nodemonConfig": {
     "ignore": [
       "dist/*",
