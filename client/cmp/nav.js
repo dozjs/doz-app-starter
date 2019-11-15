@@ -1,8 +1,9 @@
-import {tag} from 'doz'
+import {Component, tag} from 'doz'
 
 @tag('my-nav')
-export default function (h) {
-    return h`
+export default class extends Component {
+    template(h) {
+        return h`
         <style> 
             ul{
                 margin: 0;
@@ -49,4 +50,5 @@ export default function (h) {
             </ul>   
         </nav>
     `
+    }
 }
