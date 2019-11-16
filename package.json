@@ -30,7 +30,7 @@
     "autoprefixer": "^9.1.0",
     "caniuse-lite": "^1.0.30001010",
     "chai": "^4.1.2",
-    "doz": "git+https://github.com/dozjs/doz.git",
+    "doz": "latest",
     "doz-hot-location-reload": "latest",
     "doz-metatag": "latest",
     "doz-router": "latest",
