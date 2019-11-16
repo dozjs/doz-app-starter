@@ -1,7 +1,7 @@
 const nodemon = require('nodemon');
 const Bundler = require('parcel-bundler');
 const path = require('path');
-const opn = require('opn');
+const open = require('open');
 const port = require('../package').nodemonConfig.env.PORT;
 
 const url = 'http://localhost:' + port;
@@ -29,7 +29,7 @@ nodemon({
     console.log('> Server listen', url);
 
     //Open app in browser
-    opn(url);
+    await open(url);
 
 }).on('restart', function () {
     console.log('> Server restarting...');

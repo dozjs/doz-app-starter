@@ -25,6 +25,10 @@ $ npm install
     - [koa-router](https://github.com/alexmingoia/koa-router)
     - [koa-static](https://github.com/koajs/static)
 
+#### Proposal supported (via Babel plugins):
+- [Class field declarations for JavaScript](https://github.com/tc39/proposal-class-fields)
+- [JavaScript Decorators](https://github.com/tc39/proposal-decorators)
+
 ## Scripts
 - Development:
     - `start`
