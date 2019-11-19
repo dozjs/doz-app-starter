@@ -16,7 +16,7 @@ export default class extends Component {
         `
     }
 
-    onMount() {
+    onMountAsync() {
         this.metaTag({
             title: 'About',
             description: 'My About Page'

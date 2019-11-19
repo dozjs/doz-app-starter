@@ -53,7 +53,7 @@ new Doz({
     onCreate() {
         // Every time a component is mounted on the DOM,
         // I update the list of links mapped with the "data-router-link" attribute
-        this.app.on('componentMount', () => {
+        this.app.on('componentMountAsync', () => {
             if (this.router) {
                 this.router.bindLink();
             }
