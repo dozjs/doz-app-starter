@@ -6,7 +6,7 @@
     "start": "node script/development.js",
     "build": "parcel build public/index.html --no-cache",
     "snap": "npm run-script build && doz-snap -f dist/index.html",
-    "test": "mocha --require ignore-styles --require babel-register \"./{,!(node_modules)/**}/*.test.js\"",
+    "test": "mocha --require ignore-styles --require @babel/register \"./{,!(node_modules)/**}/*.test.js\"",
     "server": "node server/app.js",
     "release:major": "npm version major",
     "release:minor": "npm version minor",
