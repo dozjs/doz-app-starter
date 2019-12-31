@@ -6,7 +6,7 @@
     "start": "node script/development.js",
     "build": "parcel build public/index.html --no-cache",
     "snap": "npm run-script build && doz-snap -f dist/index.html",
-    "test": "mocha --require ignore-styles --require @babel/register \"./{,!(node_modules)/**}/*.test.js\"",
+    "test": "mocha -r ignore-styles -r @babel/register \"./{,!(node_modules)/**}/*.test.js\"",
     "server": "node server/app.js",
     "release:major": "npm version major",
     "release:minor": "npm version minor",
@@ -29,6 +29,7 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "autoprefixer": "^9.1.0",
+    "babel-plugin-transform-html-import-to-string": "0.0.1",
     "caniuse-lite": "^1.0.30001010",
     "chai": "^4.1.2",
     "doz": "latest",
@@ -44,15 +45,6 @@
     "open": "^7.0.0",
     "parcel-bundler": "1.12.4",
     "postcss-modules": "^1.3.2"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      ["@babel/plugin-proposal-decorators",{"legacy": true}],
-      ["@babel/plugin-proposal-class-properties", { "loose": true }]
-    ]
   },
   "nodemonConfig": {
     "ignore": [
