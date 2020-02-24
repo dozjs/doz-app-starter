@@ -17,7 +17,10 @@ router.get('*', async ctx => {
 
     let [content] = await dozSSR.render(ctx.path, {
         reloadBundle: isDevelop,
-        baseUrl: ctx.protocol + '://' + ctx.host
+        baseUrl: ctx.protocol + '://' + ctx.host,
+        inject: `
+            window.DOZ_APP_ID = 'my-app';
+        `
     });
 
     ctx.body = content;
