@@ -1,3 +1,4 @@
+import 'regenerator-runtime'
 import Doz from 'doz'
 import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
