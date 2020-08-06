@@ -13,7 +13,8 @@
       "@babel/plugin-proposal-class-properties",
       {
         "loose": true
-      }
+      },
+      "doz-plugin-proposal-class-properties"
     ],
     [
       "transform-html-import-to-string"
