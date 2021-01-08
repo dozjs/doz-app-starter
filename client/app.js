@@ -2,7 +2,7 @@ import 'regenerator-runtime'
 import Doz from 'doz'
 import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
-import isSSR from 'doz-ssr/plugin'
+import ssrPlugin from 'doz-ssr/plugin'
 import CONFIG from './config'
 import logoUrl from './logo.svg'
 import DozRouter from 'doz-router'
@@ -16,7 +16,7 @@ import PageAbout from './cmp/pages/about'
 hotLocationReload(module);
 
 // Plugin used during Server Side Rendering
-Doz.use(isSSR);
+Doz.use(ssrPlugin);
 
 // Plugin that changes the meta tags
 Doz.use(metaTag, {
