@@ -7,6 +7,8 @@ export default class extends Component {
     };
 
     template(h) {
+        
+        //language=HTML
         return h`
             <div>
                  <h1>${this.props.title}</h1>
