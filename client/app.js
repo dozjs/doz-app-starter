@@ -35,6 +35,8 @@ new Doz({
     root: '#app',
 
     template(h) {
+        
+        //language=HTML
         return h`
             <header>
                 <h3>Welcome to your Doz app!</h3>
