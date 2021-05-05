@@ -2,6 +2,8 @@ import {Component, tag} from 'doz'
 
 @tag('my-nav')
 export default class extends Component {
+    
+    //language=HTML
     template(h) {
         return h`
             <style> 
