@@ -1,7 +1,7 @@
 import {Component, tag} from 'doz'
 
 @tag('page-about')
-export default class extends Component {
+export default class PageAbout extends Component {
     props = {
         title: 'About'
     };
