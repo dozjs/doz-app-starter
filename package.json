@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node script/development.js",
-    "build": "parcel build public/index.html --no-cache",
+    "build": "parcel build public/index.html --no-cache --no-source-maps",
     "snap": "npm run-script build && doz-snap -f dist/index.html",
     "test": "mocha -r ignore-styles -r @babel/register \"./{,!(node_modules)/**}/*.test.js\"",
     "server": "node server/app.js",
