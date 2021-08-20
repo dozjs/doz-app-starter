@@ -4,12 +4,7 @@ import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
 import ssrPlugin from 'doz-ssr/plugin'
 import CONFIG from './config'
-import logoUrl from './logo.svg'
-import DozRouter from 'doz-router'
-import './app.css'
-import Nav from './cmp/nav'
-import PageHome from './cmp/pages/home'
-import PageAbout from './cmp/pages/about'
+import Main from './cmp/main'
 
 // This causes the page to reload in the browser
 // when there are changes during the development phase
@@ -30,42 +25,5 @@ Doz.mixin({
     CONFIG
 });
 
-new Doz({
+Doz.appCreate('#app', Main);
 
-    root: '#app',
-
-    template(h) {
-        
-        //language=HTML
-        return h`
-            <header>
-                <h3>Welcome to your Doz app!</h3>
-                <img src="${logoUrl}" title="Doz logo">
-                <p>Start to editing client/app.js</p>
-                <${Nav}/>
-            </header>
-            <main>
-                <${DozRouter} mode="history">
-                    <${PageHome} route="/"/>
-                    <${PageAbout} route="/about"/>
-                </${DozRouter}>
-            </main>
-        `
-    },
-
-    onCreate() {
-        // Every time a component is mounted on the DOM,
-        // I update the list of links mapped with the "data-router-link" attribute
-        this.app.on('componentMountAsync', () => {
-            if (this.router) {
-                this.router.bindLink();
-            }
-        });
-    },
-
-    onMountAsync() {
-        if (window.SSR)
-            window.SSR.ready();
-    }
-
-});
