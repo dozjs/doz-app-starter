@@ -11,8 +11,24 @@
     ],
     [
       "@babel/plugin-proposal-class-properties",
-      {},
+      {
+        "loose": true
+      },
       "doz-plugin-proposal-class-properties"
+    ],
+    [
+      "@babel/plugin-proposal-private-methods",
+      {
+        "loose": true
+      },
+      "doz-plugin-proposal-private-methods"
+    ],
+    [
+      "@babel/plugin-proposal-private-property-in-object",
+      {
+        "loose": true
+      },
+      "doz-plugin-proposal-private-property-in-object"
     ],
     [
       "transform-html-import-to-string"
