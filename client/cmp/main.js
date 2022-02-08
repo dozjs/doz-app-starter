@@ -1,22 +1,24 @@
 import 'regenerator-runtime'
 import {Component} from 'doz'
-import logoUrl from '../logo.svg'
-import DozRouter from 'doz-router'
+//const logoUrl = '';// new URL( '../logo.svg', import.meta.url).href;
+import logoUrl from '../logo.svg';
 import '../app.css'
-import Nav from './nav'
-import PageHome from './pages/home'
-import PageAbout from './pages/about'
+import DozRouter from 'doz-router'
+import Nav from './nav.js'
+import PageHome from './pages/home.js'
+import PageAbout from './pages/about.js'
 
 export default class Main extends Component {
 
     template(h) {
 
+        //console.log(logoUrl)
         //language=HTML
         return h`
             <div class="app-container">
                 <header>
                     <h3>Welcome to your Doz app!</h3>
-                    <img src="${logoUrl}" title="Doz logo">
+                    <img src="${logoUrl}" title="Doz logo"/>
                     <p>Start to editing client/app.js</p>
                     <${Nav}/>
                 </header>

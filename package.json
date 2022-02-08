@@ -2,8 +2,10 @@
   "name": "doz-app",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node script/development.js",
+    "prebuild": "rimraf dist/*",
+    "start": "parcel serve public/index.html --no-cache --no-source-maps",
     "build": "parcel build public/index.html --no-cache --no-source-maps",
     "snap": "npm run-script build && doz-snap -f dist/index.html",
     "test": "mocha -r ignore-styles -r @babel/register \"./{,!(node_modules)/**}/*.test.js\"",
@@ -15,50 +17,32 @@
     "postversion": "git push --follow-tags"
   },
   "dependencies": {
-    "doz-ssr": "latest",
+    "doz-ssr": "^2.5.1",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.3"
   },
   "devDependencies": {
-    "@abide-community/parcel-plugin-clean-out-dir": "^1.0.0",
-    "@babel/core": "^7.15.0",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
-    "@babel/plugin-proposal-private-methods": "^7.14.5",
-    "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/register": "^7.15.3",
-    "autoprefixer": "^9.1.0",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-html-import-to-string": "0.0.1",
-    "caniuse-lite": "^1.0.30001251",
-    "chai": "^4.3.4",
-    "doz": "latest",
+    "@babel/preset-flow": "^7.16.7",
+    "@babel/register": "^7.17.0",
+    "@parcel/core": "^2.2.1",
+    "@parcel/packager-raw-url": "^2.2.1",
+    "@parcel/transformer-webmanifest": "^2.2.1",
+    "autoprefixer": "^10.4.2",
+    "chai": "^4.3.6",
+    "doz": "^3.13.10",
     "doz-hot-location-reload": "latest",
     "doz-metatag": "latest",
     "doz-router": "latest",
     "doz-snap": "latest",
     "ignore-styles": "^5.0.1",
-    "jsdom": "^15.2.1",
+    "jsdom": "^19.0.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.19.4",
-    "open": "^7.0.0",
-    "parcel-bundler": "1.12.5",
-    "postcss-modules": "^1.5.0",
-    "regenerator-runtime": "^0.13.9"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "dist/*",
-      "client/*",
-      ".idea/*"
-    ],
-    "env": {
-      "NODE_ENV": "development",
-      "PORT": "3000"
-    }
+    "mocha": "^9.2.0",
+    "parcel": "^2.2.1",
+    "postcss": "^8.4.6",
+    "regenerator-runtime": "^0.13.9",
+    "rimraf": "^3.0.2"
   }
 }

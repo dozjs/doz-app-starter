@@ -1,10 +1,19 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const serve = require('koa-static');
-const body = require('koa-body');
+import Koa from 'koa'
+import Router from 'koa-router'
+import serve from 'koa-static'
+import body from 'koa-body'
+import DozSSR from 'doz-ssr'
+
+/*
+const Koa = require('koa')
+const Router = require('koa-router')
+const serve = require('koa-static')
+const body = require('koa-body')
+const DozSSR = require('doz-ssr')
+*/
+
 const app = new Koa();
 const router = new Router();
-const DozSSR = require('doz-ssr');
 const isDevelop = process.env.NODE_ENV === 'development';
 let dozSSR;
 
@@ -42,4 +51,6 @@ if (isDevelop) {
     app.listen(3000, createSSR);
 }
 
-module.exports = app;
+
+export default app;
+//module.exports = app;

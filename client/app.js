@@ -2,9 +2,9 @@ import 'regenerator-runtime'
 import Doz from 'doz'
 import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
-import ssrPlugin from 'doz-ssr/plugin'
-import CONFIG from './config'
-import Main from './cmp/main'
+import ssrPlugin from 'doz-ssr/plugin.js'
+import CONFIG from './config/index.js'
+import Main from './cmp/main.js'
 
 // This causes the page to reload in the browser
 // when there are changes during the development phase
@@ -22,8 +22,8 @@ Doz.use(metaTag, {
 // Add configuration to all components,
 // so it's possible call in this way this.CONFIG.FOO
 Doz.mixin({
-    CONFIG
+    CONFIG: CONFIG
 });
-
+//throw new Error('aaa')
 Doz.appCreate('#app', Main);
 

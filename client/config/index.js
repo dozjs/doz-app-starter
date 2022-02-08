@@ -1,5 +1,5 @@
-import develop from './develop';
-import production from './production';
+import develop from './develop.js';
+import production from './production.js';
 
 let config = production;
 
