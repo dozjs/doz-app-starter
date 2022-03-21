@@ -4,7 +4,7 @@ import hotLocationReload from 'doz-hot-location-reload'
 import metaTag from 'doz-metatag'
 import ssrPlugin from 'doz-ssr/plugin'
 import CONFIG from './config'
-import Main from './cmp/main'
+import Main from './components/main'
 
 // This causes the page to reload in the browser
 // when there are changes during the development phase
