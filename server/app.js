@@ -2,7 +2,8 @@ import Koa from 'koa'
 import Router from 'koa-router'
 import serve from 'koa-static'
 import body from 'koa-body'
-import DozSSR from 'doz-ssr'
+//import DozSSR from 'doz-ssr'
+import DozSSR from '../ssr/DozSSR.js'
 
 /*
 const Koa = require('koa')
