@@ -5,6 +5,7 @@ import metaTag from 'doz-metatag'
 import ssrPlugin from 'doz-ssr/plugin'
 import CONFIG from './config'
 import Main from './components/main'
+import actions from './actions'
 
 // This causes the page to reload in the browser
 // when there are changes during the development phase
@@ -25,5 +26,9 @@ Doz.mixin({
     CONFIG
 });
 
-Doz.appCreate('#app', Main);
+Doz.appCreate('#app', Main,
+    {
+        actions
+    }
+);
 
