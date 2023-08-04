@@ -21,7 +21,7 @@ export default class Main extends Component {
                     <${Nav}/>
                 </header>
                 <main>
-                    <${DozRouter} mode="history">
+                    <${DozRouter} mode="history" suspendcontent>
                         <${PageHome} route="/"/>
                         <${PageAbout} route="/about"/>
                     </${DozRouter}>
