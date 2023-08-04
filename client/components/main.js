@@ -40,7 +40,7 @@ export default class Main extends Component {
         });
     }
 
-    onMountAsync() {
+    onMount() {
         if (window.SSR)
             window.SSR.ready();
     }
