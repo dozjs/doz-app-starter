@@ -1,13 +1,15 @@
-import {Component, tag} from 'doz'
+import {Component} from 'doz'
 
-@tag('page-home')
-export default class PageHome extends Component {
-    props = {
-        title: 'Home'
-    };
+class PageHome extends Component {
+    constructor(o) {
+        super(o);
+        this.props = {
+            title: 'Home'
+        };
 
-    config = {
-        store: 'home'
+        this.config = {
+            store: 'home'
+        }
     }
 
     template(h) {
@@ -34,3 +36,6 @@ export default class PageHome extends Component {
         });
     }
 }
+
+PageHome.tag = 'page-home';
+export default PageHome

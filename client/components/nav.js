@@ -1,7 +1,6 @@
-import {Component, tag} from 'doz'
+import {Component} from 'doz'
 
-@tag('my-nav')
-export default class MyNav extends Component {
+class NavSite extends Component {
     
     template(h) {
         
@@ -55,3 +54,6 @@ export default class MyNav extends Component {
         `
     }
 }
+
+NavSite.tag = 'nav-site';
+export default NavSite;

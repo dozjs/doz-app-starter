@@ -1,4 +1,3 @@
-import 'regenerator-runtime'
 import {Component} from 'doz'
 import logoUrl from '../logo.svg'
 import DozRouter from 'doz-router'
@@ -7,7 +6,7 @@ import Nav from './nav'
 import PageHome from './pages/home'
 import PageAbout from './pages/about'
 
-export default class Main extends Component {
+class Main extends Component {
 
     template(h) {
 
@@ -33,7 +32,7 @@ export default class Main extends Component {
     onCreate() {
         // Every time a component is mounted on the DOM,
         // I update the list of links mapped with the "data-router-link" attribute
-        this.app.on('componentMountAsync', () => {
+        this.app.on('componentMount', () => {
             if (this.router) {
                 this.router.bindLink();
             }
@@ -45,3 +44,5 @@ export default class Main extends Component {
             window.SSR.ready();
     }
 }
+
+export default Main;

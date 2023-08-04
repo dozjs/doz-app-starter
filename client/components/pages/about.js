@@ -1,10 +1,13 @@
-import {Component, tag} from 'doz'
+import {Component} from 'doz'
 
-@tag('page-about')
-export default class PageAbout extends Component {
-    props = {
-        title: 'About'
-    };
+class PageAbout extends Component {
+    constructor(o) {
+        super(o);
+        this.props = {
+            title: 'About'
+        };
+
+    }
 
     template(h) {
         
@@ -25,3 +28,6 @@ export default class PageAbout extends Component {
         });
     }
 }
+
+PageAbout.tag = 'page-about';
+export default  PageAbout;
