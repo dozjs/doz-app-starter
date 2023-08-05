@@ -20,7 +20,7 @@ $ npm install
 
 ## Scripts
 - Development:
-    - `start`
+    - `dev`
 - Production:
     - `build`
     - `preview`
